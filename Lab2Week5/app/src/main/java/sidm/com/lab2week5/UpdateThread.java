@@ -45,7 +45,7 @@ public class UpdateThread extends Thread
         long framePerSecond = 1000 / targetFPS; // 1000 is in milliseconds
         long startTime = 0;
 
-        // We need another varible to calculate delta time
+        // We need another variable to calculate delta time
         long prevTime = System.nanoTime();
 
         while(IsRunning())
@@ -69,7 +69,7 @@ public class UpdateThread extends Thread
                 synchronized (holder) // Toilet, Lock (respectively)
                 {
                     // Only one may be in here!!! We draw
-                    canvas.drawColor(Color.BLACK);
+                    canvas.drawColor(Color.WHITE);
 
                     // Can think of canvas as the buffer
                     // Render our other stuff here
