@@ -1,0 +1,18 @@
+package sidm.com.lab2week5;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.Window;
+
+public class GamePage extends Activity
+{
+    @Override
+    public void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        // We don't have game view yet, so GG. Lets keep it commented :(
+         setContentView(new GameView(this));
+    }
+}
