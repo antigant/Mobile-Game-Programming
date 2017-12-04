@@ -42,5 +42,12 @@ public class SampleGame implements State
     {
         EntityManager.Instance.Render(_canvas);
     }
+
+    @Override
+    public void Exit()
+    {
+        // Clear the scene before going to the next
+
+    }
 }
 

@@ -8,4 +8,5 @@ public interface State
     void Init(SurfaceView _view);
     void Update(float dt);
     void Render(Canvas _canvas);
+    void Exit();
 }
