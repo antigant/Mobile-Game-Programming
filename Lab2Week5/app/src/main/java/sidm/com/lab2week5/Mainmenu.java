@@ -14,7 +14,7 @@ import android.view.View.OnClickListener;
 import static android.R.attr.button;
 import static android.R.attr.layout_width;
 
-public class Mainmenu implements State//extends Activity implements OnClickListener
+public class Mainmenu implements Scene//extends Activity implements OnClickListener
 {
     // Declaration of Singleton
     public final static Mainmenu Instance = new Mainmenu();
@@ -33,7 +33,7 @@ public class Mainmenu implements State//extends Activity implements OnClickListe
         EntityManager.Instance.Init(_view);
         MenuBackground.Create();
 
-        SampleEntity.Create();
+//        SampleEntity.Create();
     }
 
     @Override

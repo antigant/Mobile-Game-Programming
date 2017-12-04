@@ -18,12 +18,12 @@ public class MenuBackground implements EntityBase
     private SurfaceView view = null;
 
     @Override
-    public boolean IsDone() {
+    public boolean IsActive() {
         return isDone;
     }
 
     @Override
-    public void SetIsDone(boolean _isDone)
+    public void SetIsActive(boolean _isDone)
     {
         isDone = _isDone;
     }
