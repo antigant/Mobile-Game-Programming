@@ -11,7 +11,7 @@ public class SampleEntity implements EntityBase, Collidable
 {
     private Bitmap bmp = null;
     boolean isDone = false;
-    // Create a Vector2 class
+     Create a Vector2 class
     private float xPos, yPos, xDir, yDir, lifeTime;
 
     @Override
@@ -35,12 +35,12 @@ public class SampleEntity implements EntityBase, Collidable
 
         Random ranGen = new Random();
 
-        // Init variables here
-        xPos = ranGen.nextFloat() * _view.getWidth();
-        yPos = ranGen.nextFloat() * _view.getHeight();
+         Init variables here
+        xPos = ranGen.nextFloat()  _view.getWidth();
+        yPos = ranGen.nextFloat()  _view.getHeight();
 
-        xDir = ranGen.nextFloat() * 100.f - 50.f;
-        yDir = ranGen.nextFloat() * 100.f - 50.f;
+        xDir = ranGen.nextFloat()  100.f - 50.f;
+        yDir = ranGen.nextFloat()  100.f - 50.f;
     }
 
     @Override
@@ -48,14 +48,14 @@ public class SampleEntity implements EntityBase, Collidable
     {
         lifeTime -= dt;
 
-        xPos += xDir * dt;
-        yPos += yDir * dt;
+        xPos += xDir  dt;
+        yPos += yDir  dt;
 
-        // We will remove this object on click
+         We will remove this object on click
         if(TouchManager.Instance.IsDown())
         {
-            float imgRadius = bmp.getHeight() * 0.5f;
-            // Check our collision here!
+            float imgRadius = bmp.getHeight()  0.5f;
+             Check our collision here!
             if(Collision.SphereToSphere(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, xPos, yPos, imgRadius))
             {
                 SetIsDone(true);
@@ -66,8 +66,8 @@ public class SampleEntity implements EntityBase, Collidable
     @Override
     public void Render(Canvas _canvas)
     {
-        // Is to centralised the image
-        _canvas.drawBitmap(bmp, xPos - bmp.getWidth() * 0.5f, yPos - bmp.getHeight() * 0.5f, null);
+         Is to centralised the image
+        _canvas.drawBitmap(bmp, xPos - bmp.getWidth()  0.5f, yPos - bmp.getHeight()  0.5f, null);
 
     }
 
@@ -81,14 +81,11 @@ public class SampleEntity implements EntityBase, Collidable
     @Override
     public String GetType()
     {
-        return "SampleEntity";
+        return SampleEntity;
     }
 
     @Override
-    public float GetPosX() {
-        return xPos;
-
-    }
+    public float GetPosX() { return xPos; }
 
     @Override
     public float GetPosY()
@@ -99,16 +96,19 @@ public class SampleEntity implements EntityBase, Collidable
     @Override
     public float GetRadius()
     {
-        return bmp.getHeight() * 0.5f;
+        return bmp.getHeight()  0.5f;
     }
 
     @Override
     public void OnHit(Collidable _other)
     {
-        if(_other.GetType() == "SampleEntity")
+        if(_other.GetType() == SampleEntity)
         {
             SetIsDone(true);
         }
     }
+
+   
+
 }
 

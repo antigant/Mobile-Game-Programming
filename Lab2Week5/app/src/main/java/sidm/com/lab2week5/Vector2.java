@@ -23,10 +23,10 @@ public class Vector2
     }
 
     void Set( float a, float b)
-{
-    x = a;
-    y = b;
-}
+    {
+        x = a;
+        y = b;
+    }
 
     void SetZero()
 {

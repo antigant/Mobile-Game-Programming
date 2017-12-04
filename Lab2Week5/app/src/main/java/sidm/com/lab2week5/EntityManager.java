@@ -32,7 +32,7 @@ public class EntityManager
         {
             currEntity.Update(dt);
 
-            if(currEntity.IsDone())
+            if(currEntity.IsActive())
             {
                 // We need to remove this!
                 removalList.add(currEntity);
@@ -58,7 +58,7 @@ public class EntityManager
                     {
                         Collidable second = (Collidable) otherEntity;
                         // We got our 2 collideables! Check collision here!
-                        if(Collision.SphereToSphere(first.GetPosX(), first.GetPosY(), first.GetRadius(), second.GetPosX(), second.GetPosY(), second.GetRadius()))
+                        if(Collision.SphereToSphere(first.GetPosition().x, first.GetPosition().y, first.GetRadius(), second.GetPosition().x, second.GetPosition().y, second.GetRadius()))
                         {
                             // COLLIDED! We notify the both of them
                             first.OnHit(second);
@@ -67,7 +67,7 @@ public class EntityManager
                     }
                 }
             }
-            if(currEntity.IsDone())
+            if(currEntity.IsActive())
             {
                 // We need to remove this!
                 removalList.add(currEntity);
