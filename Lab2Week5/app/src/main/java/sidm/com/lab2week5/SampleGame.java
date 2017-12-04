@@ -4,7 +4,7 @@ import android.graphics.Canvas;
 import android.view.SurfaceView;
 
 // Game instance (Put all game variables in here)
-public class SampleGame
+public class SampleGame implements State
 {
     // Declaration of Singleton
     public final static SampleGame Instance = new SampleGame();
@@ -17,12 +17,14 @@ public class SampleGame
     }
 
 
+    @Override
     public void Init(SurfaceView _view)
     {
         EntityManager.Instance.Init(_view);
         SampleBackground.Create();
     }
 
+    @Override
     public void Update(float dt)
     {
         time -= dt;
@@ -35,7 +37,7 @@ public class SampleGame
         EntityManager.Instance.Update(dt);
     }
 
-
+    @Override
     public void Render(Canvas _canvas)
     {
         EntityManager.Instance.Render(_canvas);

@@ -51,7 +51,6 @@ public class SampleEntity implements EntityBase, Collidable
         xPos += xDir * dt;
         yPos += yDir * dt;
 
-
         // We will remove this object on click
         if(TouchManager.Instance.IsDown())
         {

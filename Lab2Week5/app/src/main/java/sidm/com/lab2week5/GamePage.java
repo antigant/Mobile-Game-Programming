@@ -6,6 +6,7 @@ import android.view.MotionEvent;
 import android.view.Window;
 import android.view.WindowManager;
 
+// Activity is like an .exe file, view is what is rendered on the screen
 public class GamePage extends Activity
 {
     @Override
@@ -16,7 +17,7 @@ public class GamePage extends Activity
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         // We don't have game view yet, so GG. Lets keep it commented :(
-         setContentView(new GameView(this));
+        setContentView(new GameView(this));
     }
 
     @Override

@@ -59,7 +59,7 @@ public class UpdateThread extends Thread
             prevTime = currTime;
 
             // We wanna have this awesome update ^_^
-             SampleGame.Instance.Update(deltaTime);
+            SampleGame.Instance.Update(deltaTime);
 
             // Render
             Canvas canvas = holder.lockCanvas(null);

@@ -45,7 +45,7 @@ public class SampleBackground implements EntityBase
 
         float xOffset = (float)Math.sin(offset) * bmp.getWidth() * 0.3f;
 
-        _canvas.drawBitmap(bmp, xPos - bmp.getWidth() * 0.5f + xOffset, yPos - bmp.getHeight() * 0.5f, null);
+        _canvas.drawBitmap(bmp, xPos - bmp.getWidth() * 0.5f, yPos - bmp.getHeight() * 0.5f + offset, null);
     }
 
     public static SampleBackground Create()
