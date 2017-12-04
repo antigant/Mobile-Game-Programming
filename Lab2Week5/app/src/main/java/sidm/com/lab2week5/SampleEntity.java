@@ -85,10 +85,7 @@ public class SampleEntity implements EntityBase, Collidable
     }
 
     @Override
-    public float GetPosX() {
-        return xPos;
-
-    }
+    public float GetPosX() { return xPos; }
 
     @Override
     public float GetPosY()
@@ -110,5 +107,8 @@ public class SampleEntity implements EntityBase, Collidable
             SetIsDone(true);
         }
     }
+
+
+
 }
 

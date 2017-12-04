@@ -20,7 +20,8 @@ public class UpdateThread extends Thread
         // THIS IS WHERE WE SHOULD INIT OUR GAME STUFF
         // TODO : Hahaha so cool right :D
 
-        SampleGame.Instance.Init(_view);
+        Mainmenu.Instance.Init(_view);
+        //SampleGame.Instance.Init(_view);
     }
 
     public boolean IsRunning()
@@ -59,7 +60,9 @@ public class UpdateThread extends Thread
             prevTime = currTime;
 
             // We wanna have this awesome update ^_^
-            SampleGame.Instance.Update(deltaTime);
+
+            Mainmenu.Instance.Update(deltaTime);
+            //SampleGame.Instance.Update(deltaTime);
 
             // Render
             Canvas canvas = holder.lockCanvas(null);
@@ -73,7 +76,9 @@ public class UpdateThread extends Thread
 
                     // Can think of canvas as the buffer
                     // Render our other stuff here
-                    SampleGame.Instance.Render(canvas);
+
+                    Mainmenu.Instance.Render(canvas);
+                    //SampleGame.Instance.Render(canvas);
                 }
 
                 // This is the part dat du de renders!

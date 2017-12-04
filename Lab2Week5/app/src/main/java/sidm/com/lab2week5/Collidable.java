@@ -8,4 +8,6 @@ public interface Collidable
     float GetRadius();
 
     void OnHit(Collidable _other);
+
+
 }
