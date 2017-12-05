@@ -111,10 +111,28 @@ public class Vector2
         return !IsEqual(x, rhs.x) || !IsEqual(y, rhs.y);
     }
 
-    // Greater than or equals to
+    // Greater than or equals to >=
     final boolean TwoVectorGreaterEqual(final Vector2 rhs)
     {
         return IsGreaterEqual(x, rhs.x) && IsGreaterEqual(y, rhs.y);
+    }
+
+    // Greater than >
+    final boolean TwoVectorGreat(final Vector2 rhs)
+    {
+        return IsGreater(x, rhs.x) && IsGreater(y, rhs.y);
+    }
+
+    // Lesser than or equals to <=
+    final boolean TwoVectorLesserEqual(final Vector2 rhs)
+    {
+        return IsLesserEqual(x, rhs.x) && IsLesserEqual(y, rhs.y);
+    }
+
+    // Lesser than <
+    final boolean TwoVectorLesser(final Vector2 rhs)
+    {
+        return IsLesser(x, rhs.x) && IsLesser(y, rhs.y);
     }
 
     Vector2 Assignment(final Vector2 rhs)
