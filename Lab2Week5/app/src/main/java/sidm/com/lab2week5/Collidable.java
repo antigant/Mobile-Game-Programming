@@ -8,6 +8,7 @@ public interface Collidable
     float GetRadius();
 
     void OnHit(Collidable _other);
-
-
+    void SetAABB(Vector2 _maxAABB, Vector2 _minAABB);
+    Vector2 GetMaxAABB();
+    Vector2 GetMinAABB();
 }

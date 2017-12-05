@@ -32,7 +32,7 @@ public class EntityManager
         {
             currEntity.Update(dt);
 
-            if(currEntity.IsActive())
+            if(currEntity.IsActive() == false)
             {
                 // We need to remove this!
                 removalList.add(currEntity);
@@ -67,7 +67,7 @@ public class EntityManager
                     }
                 }
             }
-            if(currEntity.IsActive())
+            if(currEntity.IsActive() == false)
             {
                 // We need to remove this!
                 removalList.add(currEntity);
