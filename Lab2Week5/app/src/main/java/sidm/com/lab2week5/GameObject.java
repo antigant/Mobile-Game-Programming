@@ -135,36 +135,13 @@ public class GameObject implements EntityBase, Collidable
 
     @Override
     public void Init(SurfaceView _view) {
-        active = true;
-
-        bmp = BitmapFactory.decodeResource(_view.getResources(), R.drawable.ship2_1);
-
-        Random ranGen = new Random();
-
-        //Init variables here
-        SetPosition(new Vector2(ranGen.nextFloat() * _view.getWidth(), ranGen.nextFloat() * _view.getHeight()));
-        SetDirection(new Vector2(ranGen.nextFloat() * 100.f - 50.f, ranGen.nextFloat() * 100.f - 50.f));
     }
 
     @Override
     public void Update(float dt) {
-        Vector2 result = new Vector2(GetPosition().x + GetDirection().x * dt, GetPosition().y + GetDirection().y * dt);
-        SetPosition(result);
-        // We will remove this object on click
-        if(TouchManager.Instance.IsDown())
-        {
-            float imgRadius = bmp.getHeight() * 0.5f;
-            // Check our collision here!
-            if(Collision.SphereToSphere(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, GetPosition().x, GetPosition().y, imgRadius))
-            {
-                SetIsActive(true);
-            }
-        }
     }
 
     @Override
     public void Render(Canvas _canvas) {
-        System.out.println("Rendering in gameobject");
-        _canvas.drawBitmap(bmp, GetPosition().x - bmp.getWidth() * 0.5f, GetPosition().y - bmp.getHeight() * 0.5f, null);
     }
 }
