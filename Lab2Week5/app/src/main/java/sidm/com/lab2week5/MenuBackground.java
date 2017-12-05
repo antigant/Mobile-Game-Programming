@@ -5,7 +5,11 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.view.SurfaceView;
 
-public class SampleBackground implements EntityBase
+/**
+ * Created by janra on 4/12/2017.
+ */
+
+public class MenuBackground implements EntityBase
 {
     private Bitmap bmp = null;
     private boolean isDone = false;
@@ -28,7 +32,7 @@ public class SampleBackground implements EntityBase
     public void Init(SurfaceView _view)
     {
         view = _view;
-        bmp = BitmapFactory.decodeResource(_view.getResources(), R.drawable.gamescene);
+        bmp = BitmapFactory.decodeResource(_view.getResources(), R.drawable.ship2_2);
     }
 
     @Override
@@ -48,9 +52,9 @@ public class SampleBackground implements EntityBase
         _canvas.drawBitmap(bmp, xPos - bmp.getWidth() * 0.5f, yPos - bmp.getHeight() * 0.5f + offset, null);
     }
 
-    public static SampleBackground Create()
+    public static MenuBackground Create()
     {
-        SampleBackground result = new SampleBackground();
+        MenuBackground result = new MenuBackground();
         EntityManager.Instance.AddEntity(result);
         return result;
     }

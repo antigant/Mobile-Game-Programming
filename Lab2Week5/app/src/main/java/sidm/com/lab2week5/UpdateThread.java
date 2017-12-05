@@ -20,7 +20,11 @@ public class UpdateThread extends Thread
         // THIS IS WHERE WE SHOULD INIT OUR GAME STUFF
         // TODO : Hahaha so cool right :D
 
-        SampleGame.Instance.Init(_view);
+        //SampleGame.Instance.Init(_view);
+        // TODO: REMEMBER TO FIRST INIT THE SCENE (FOR MC)
+//        SampleGame.Instance.Init(_view);
+        SceneManager.Instance.SetGameView(_view);
+        AddScene();
     }
 
     public boolean IsRunning()
@@ -36,6 +40,13 @@ public class UpdateThread extends Thread
     public void Terminate()
     {
         isRunning = false;
+    }
+
+    private void AddScene()
+    {
+        // Init all the scene in this function, any changes just change here can alr
+//        SceneManager.Instance.AddState("MainMenu", Mainmenu.Instance);
+        SceneManager.Instance.AddState("SampleGame", SampleGame.Instance);
     }
 
     @Override
@@ -59,7 +70,9 @@ public class UpdateThread extends Thread
             prevTime = currTime;
 
             // We wanna have this awesome update ^_^
-            SampleGame.Instance.Update(deltaTime);
+
+//            SampleGame.Instance.Update(deltaTime);
+            SceneManager.Instance.Update(deltaTime);
 
             // Render
             Canvas canvas = holder.lockCanvas(null);
@@ -73,7 +86,10 @@ public class UpdateThread extends Thread
 
                     // Can think of canvas as the buffer
                     // Render our other stuff here
-                    SampleGame.Instance.Render(canvas);
+
+//                    SampleGame.Instance.Render(canvas);
+
+                    SceneManager.Instance.Render(canvas);
                 }
 
                 // This is the part dat du de renders!
@@ -95,62 +111,3 @@ public class UpdateThread extends Thread
         }
     }
 }
-
-
-
-/*import android.graphics.Canvas;
-import android.graphics.Color;
-import android.view.SurfaceHolder;
-
-public class UpdateThread extends Thread
-{
-    private GameView view = null;
-    private SurfaceHolder holder = null;
-    private boolean isRunning = false; // Start not running
-
-    public UpdateThread(GameView _view)
-    {
-        view = _view;
-        holder = _view.getHolder();
-        // Init here sample game
-    }
-
-    public boolean IsRunning() { return isRunning; }
-
-    public void Initialize()
-    {
-        isRunning = true;
-    }
-
-    public void Terminate()
-    {
-        isRunning = false;
-    }
-
-    @Override // Annotation, will throw error is no overriding is done after this line
-    public void run()
-    {
-        while(isRunning)
-        {
-            // Here can be your state manager update!
-
-            Canvas canvas = holder.lockCanvas(null);
-            if(canvas != null)
-            {
-                // To prevent 2 threads from rendering at the same time
-                synchronized (holder)
-                {
-                    // Render the whole screen black
-                    canvas.drawColor(Color.BLACK);
-
-                    // Insert stuff here
-                    // SampleGame::Instance.Render();
-                }
-                holder.unlockCanvasAndPost(canvas);
-            }
-
-            // Should have something to limit the frame rate here!
-        }
-    }
-}*/
-

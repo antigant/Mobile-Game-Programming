@@ -5,8 +5,8 @@ import android.view.SurfaceView;
 
 public interface EntityBase
 {
-    boolean IsDone();
-    void SetIsDone(boolean _isDone);
+    boolean IsActive();
+    void SetIsActive(boolean _active);
 
     void Init(SurfaceView _view);
     void Update(float dt);

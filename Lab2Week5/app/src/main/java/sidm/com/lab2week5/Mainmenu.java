@@ -2,46 +2,71 @@ package sidm.com.lab2week5;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Canvas;
 import android.os.Bundle;
+import android.view.SurfaceView;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.view.View.OnClickListener;
 
-public class Mainmenu extends Activity implements OnClickListener
+import static android.R.attr.button;
+import static android.R.attr.layout_width;
+
+public class Mainmenu implements Scene//extends Activity implements OnClickListener
 {
-    // Define button as an object
-    private Button btn_start;
+    // Declaration of Singleton
+    public final static Mainmenu Instance = new Mainmenu();
+    private float time = 0.5f;
 
-    @Override // Annotation, ensure any sub class method to override properly
-    protected void onCreate(Bundle savedInstanceState)
+    // This is to not allow anyone else to create another game
+    private Mainmenu()
     {
-        super.onCreate(savedInstanceState);
 
-        // Hide title
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        // Hide top bar
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-        // This is using LAYOUTS!!! NOT WHAT WE WANT!
-        setContentView(R.layout.mainmenu);
-        //setContentView(new GameView(this));
-
-        // Set Listener to button
-        btn_start = (Button)findViewById(R.id.btn_start);
-        btn_start.setOnClickListener(this);
     }
 
-    // Invoker a callback on clicked event on a view
-    public void onClick(View v)
+
+    @Override
+    public void Init(SurfaceView _view)
     {
-        Intent intent = new Intent();
+        EntityManager.Instance.Init(_view);
+        MenuBackground.Create();
 
-        if(v == btn_start)
-            intent.setClass(this, SampleGame.class);
-
-        startActivity(intent);
+//        SampleEntity.Create();
     }
+
+    @Override
+    public void Update(float dt)
+    {
+        time -= dt;
+
+
+        if (true)//tap on screen
+        {
+            //change the scene
+        }
+       // if(time <= 0.f)
+        //{
+           // SampleEntity.Create();
+        //    time = 0.5f;
+       // }
+        //EntityManager.Instance.Update(dt);
+    }
+
+    @Override
+    public void Render(Canvas _canvas)
+    {
+        EntityManager.Instance.Render(_canvas);
+    }
+
+    @Override
+    public void Exit()
+    {
+        // Clear the scene before going to the next
+
+    }
+
+
 }
 
