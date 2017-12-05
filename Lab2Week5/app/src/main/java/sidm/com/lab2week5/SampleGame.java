@@ -27,18 +27,21 @@ public class SampleGame implements Scene
     {
         EntityManager.Instance.Init(_view);
         SampleBackground.Create();
+
     }
 
     @Override
     public void Update(float dt)
     {
+
         time -= dt;
 
         if(time <= 0.f)
         {
-            GameObject.Create();
 
-            time = 0.5f;
+
+            GameObject.Create();
+            time = 1.5f;
         }
         EntityManager.Instance.Update(dt);
     }

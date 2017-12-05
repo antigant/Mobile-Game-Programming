@@ -9,9 +9,9 @@ public class EntityManager
 {
     public static final EntityManager Instance = new EntityManager();
     private SurfaceView view = null;
-    private LinkedList<EntityBase> entityList = new LinkedList<>();
+    protected LinkedList<EntityBase> entityList = new LinkedList<>();
     // List to remove entity
-    private LinkedList<EntityBase> removalList = new LinkedList<>();
+    protected LinkedList<EntityBase> removalList = new LinkedList<>();
 
 
     private EntityManager()
@@ -32,14 +32,14 @@ public class EntityManager
         {
             currEntity.Update(dt);
 
-            if(currEntity.IsActive())
+            if(currEntity.IsActive()== false)
             {
                 // We need to remove this!
                 removalList.add(currEntity);
             }
         }
 
-        RemoveEntity();
+       // RemoveEntity();
 
         for(int i = 0; i < entityList.size(); ++i)
         {
@@ -67,7 +67,7 @@ public class EntityManager
                     }
                 }
             }
-            if(currEntity.IsActive())
+            if(currEntity.IsActive()== false)
             {
                 // We need to remove this!
                 removalList.add(currEntity);
@@ -97,7 +97,9 @@ public class EntityManager
     public void AddEntity(EntityBase _newEntity)
     {
         _newEntity.Init(view);
-        entityList.add(_newEntity);
+        //entityList.add(_newEntity);
+        entityList.push(_newEntity);
+
     }
 }
 

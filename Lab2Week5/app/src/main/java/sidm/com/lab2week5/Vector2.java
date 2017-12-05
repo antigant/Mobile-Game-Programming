@@ -134,5 +134,20 @@ public class Vector2
         return new Vector2(rhs.x * scalar, rhs.y * scalar);
     }
 
+    final boolean IsGreater(float a , float b)
+    {
+        return (a > b - EPSILON);
+    }
+    final boolean IsLesser(float a ,float b)
+    {
+        return (a < b + EPSILON);
+    }
+//    bool operator==( const Vector3& rhs ) const; //Equality check
+//    bool operator!= ( const Vector3& rhs ) const; //Inequality check
+//    bool operator>=(const Vector3& rhs) const;	// Check if LHS is >= RHS
+//    bool operator>(const Vector3& rhs) const;	// Check if LHS is > RHS
+//    bool operator<=(const Vector3& rhs) const;	// Check if LHS is <= RHS
+//    bool operator<(const Vector3& rhs) const;	// Check if LHS is < RHS
+
 }
 

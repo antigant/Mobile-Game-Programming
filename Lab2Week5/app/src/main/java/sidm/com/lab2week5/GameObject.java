@@ -91,6 +91,10 @@ public class GameObject implements EntityBase, Collidable
     public static GameObject Create()
     {
         GameObject result = new GameObject();
+//        result.SetIsActive(true);
+//        result.SetName("wild Object");
+//        result.SetScale(new Vector2(30f,30f));
+        //result.
         EntityManager.Instance.AddEntity(result);
         return result;
     }
