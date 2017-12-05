@@ -16,6 +16,28 @@ public class Vector2
         y = b;
     }
 
+    final boolean IsGreater(float a, float b)
+    {
+        return (a > b - EPSILON);
+    }
+
+    final Boolean IsGreaterEqual(float a, float b)
+    {
+        return IsGreater(a, b) || IsEqual(a, b);
+    }
+
+    final boolean IsLesser(float a, float b)
+    {
+        return (a < b + EPSILON);
+    }
+
+    final boolean IsLesserEqual(float a, float b)
+    {
+        return IsLesser(a, b) || IsEqual(a, b);
+    }
+
+
+
     Vector2(final Vector2 rhs)
     {
         x = rhs.x;
@@ -87,6 +109,12 @@ public class Vector2
     final boolean TwoVectorNotEqual (final Vector2 rhs)
     {
         return !IsEqual(x, rhs.x) || !IsEqual(y, rhs.y);
+    }
+
+    // Greater than or equals to
+    final boolean TwoVectorGreaterEqual(final Vector2 rhs)
+    {
+        return IsGreaterEqual(x, rhs.x) && IsGreaterEqual(y, rhs.y);
     }
 
     Vector2 Assignment(final Vector2 rhs)
