@@ -102,14 +102,9 @@ public class TouchManager
         return status == TouchState.UP;
     }
 
-    public int GetPosX()
+    public final Vector2 GetTouchPos()
     {
-        return (int)touchPos.x;
-    }
-
-    public int GetPosY()
-    {
-        return (int)touchPos.y;
+        return touchPos;
     }
 
     public void Update(int _posX, int _posY, int motionEventStatus)

@@ -153,7 +153,7 @@ public class GameObject implements EntityBase, Collidable
     }
 
     @Override
-    public void Update(float dt) {
+    public void Update() {
     }
 
     @Override

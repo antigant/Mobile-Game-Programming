@@ -30,9 +30,9 @@ public class SampleGame implements Scene
     }
 
     @Override
-    public void Update(float dt)
+    public void Update()
     {
-        time -= dt;
+        time -= Time.deltaTime;
 
         if(time <= 0.f)
         {
@@ -40,7 +40,7 @@ public class SampleGame implements Scene
 
             time = 0.5f;
         }
-        EntityManager.Instance.Update(dt);
+        EntityManager.Instance.Update();
     }
 
     @Override

@@ -25,21 +25,9 @@ public class Mainmenu implements Scene//extends Activity implements OnClickListe
     }
 
     @Override
-    public void Update(float dt)
+    public void Update()
     {
-        time -= dt;
-
-
-        if (true)//tap on screen
-        {
-            //change the scene
-        }
-       // if(time <= 0.f)
-        //{
-           // SampleEntity.Create();
-        //    time = 0.5f;
-       // }
-        //EntityManager.Instance.Update(dt);
+        time -= Time.deltaTime;
     }
 
     @Override

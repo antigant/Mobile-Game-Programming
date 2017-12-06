@@ -36,9 +36,9 @@ public class MenuBackground implements EntityBase
     }
 
     @Override
-    public void Update(float dt)
+    public void Update()
     {
-        offset += dt * 0.1f;
+        offset += Time.deltaTime * 0.1f;
     }
 
     @Override

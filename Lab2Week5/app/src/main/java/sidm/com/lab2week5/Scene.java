@@ -6,7 +6,7 @@ import android.view.SurfaceView;
 public interface Scene
 {
     void Init(SurfaceView _view);
-    void Update(float dt);
+    void Update();
     void Render(Canvas _canvas);
     void Exit();
 }
