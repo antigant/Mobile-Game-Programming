@@ -5,9 +5,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.view.SurfaceView;
 
-/**
- * Created by janra on 4/12/2017.
- */
 
 public class MenuBackground implements EntityBase
 {
@@ -38,7 +35,7 @@ public class MenuBackground implements EntityBase
     @Override
     public void Update()
     {
-        offset += Time.deltaTime * 0.1f;
+
     }
 
     @Override
@@ -52,10 +49,10 @@ public class MenuBackground implements EntityBase
         _canvas.drawBitmap(bmp, xPos - bmp.getWidth() * 0.5f, yPos - bmp.getHeight() * 0.5f + offset, null);
     }
 
-    public static MenuBackground Create()
+    public MenuBackground Create()
     {
-        MenuBackground result = new MenuBackground();
-        EntityManager.Instance.AddEntity(result);
-        return result;
+        //MenuBackground result = new MenuBackground();
+        EntityManager.Instance.AddEntity(this);
+        return this;
     }
 }

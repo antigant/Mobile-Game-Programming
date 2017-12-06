@@ -48,9 +48,10 @@ public class UpdateThread extends Thread
     private void AddScene()
     {
         // Init all the scene in this function, any changes just change here can alr
+        SceneManager.Instance.AddState("SplashScreen",SplashScreen.Instance);
         SceneManager.Instance.AddState("MainMenu", Mainmenu.Instance);
         SceneManager.Instance.AddState("SampleGame", SampleGame.Instance);
-        //SceneManager.Instance.AddState("SplashScreen",SplashScreen.Instance);
+
     }
 
     @Override
