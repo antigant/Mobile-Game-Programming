@@ -12,7 +12,7 @@ public class MenuBackground implements EntityBase
     private Bitmap bmp = null;
     private boolean active;
 
-    private float xPos, yPos, offset;
+    private float xPos, yPos;
     private SurfaceView view = null;
     Matrix transform = new Matrix();
 
@@ -39,7 +39,6 @@ public class MenuBackground implements EntityBase
     @Override
     public void Update()
     {
-
     }
 
     @Override
@@ -47,8 +46,6 @@ public class MenuBackground implements EntityBase
     {
         xPos = 0.5f * view.getWidth();
         yPos = 0.5f * view.getHeight();
-
-        float xOffset = (float)Math.sin(offset) * bmp.getWidth() * 0.3f;
 
         transform.setTranslate(_canvas.getWidth() * 0.5f, _canvas.getHeight() * 0.5f);
         transform.setScale(1.25f, 3f);
@@ -63,7 +60,6 @@ public class MenuBackground implements EntityBase
 
     public MenuBackground Create()
     {
-//        MenuBackground result = new MenuBackground();
         EntityManager.Instance.AddEntity(this);
         return this;
     }

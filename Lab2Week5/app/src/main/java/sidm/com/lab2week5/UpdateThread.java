@@ -11,6 +11,7 @@ public class UpdateThread extends Thread
     private GameView view = null;
     private SurfaceHolder holder = null;
     private boolean isRunning = false;
+    private Canvas canvas;
 
     public UpdateThread(GameView _view)
     {
@@ -81,7 +82,9 @@ public class UpdateThread extends Thread
             SceneManager.Instance.Update();
 
             // Render
-            Canvas canvas = holder.lockCanvas(null);
+            canvas = holder.lockCanvas(null);
+            CanvasManager.CanvasHeight = canvas.getHeight();
+            CanvasManager.CanvasWidth = canvas.getWidth();
             if(canvas != null)
             {
                 // We have canvas, we render! :D
