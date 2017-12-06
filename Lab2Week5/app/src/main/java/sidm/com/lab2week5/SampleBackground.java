@@ -8,25 +8,26 @@ import android.view.SurfaceView;
 public class SampleBackground implements EntityBase
 {
     private Bitmap bmp = null;
-    private boolean isDone = false;
+    private boolean active = true;
 
     private float xPos, yPos, offset;
     private SurfaceView view = null;
 
     @Override
     public boolean IsActive() {
-        return isDone;
+        return active;
     }
 
     @Override
-    public void SetIsActive(boolean _isDone)
+    public void SetIsActive(boolean _active)
     {
-        isDone = _isDone;
+        active = _active;
     }
 
     @Override
     public void Init(SurfaceView _view)
     {
+
         view = _view;
         bmp = BitmapFactory.decodeResource(_view.getResources(), R.drawable.gamescene);
     }

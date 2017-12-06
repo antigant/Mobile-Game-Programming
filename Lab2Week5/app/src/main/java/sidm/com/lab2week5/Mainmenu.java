@@ -1,27 +1,15 @@
 package sidm.com.lab2week5;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.graphics.Canvas;
-import android.os.Bundle;
-import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.Button;
-import android.view.View.OnClickListener;
-
-import static android.R.attr.button;
-import static android.R.attr.layout_height;
-import static android.R.attr.layout_width;
 
 public class Mainmenu implements Scene//extends Activity implements OnClickListener
 {
     // Declaration of Singleton
     public final static Mainmenu Instance = new Mainmenu();
     private float time = 0.5f;
-    Buttons Play;
+
+    PlayButton a = new PlayButton();
 //    GameObject Play;
 //    GameObject Quit;
     // This is to not allow anyone else to create another game
@@ -37,6 +25,10 @@ public class Mainmenu implements Scene//extends Activity implements OnClickListe
         EntityManager.Instance.Init(_view);
         MenuBackground.Create();
 
+        a.Create();
+//        a.Init(_view);
+//        EntityManager.Instance.AddEntity(a);
+       // PlayButton.Init();
 //        Play = GameObject.Create();
 //        Play.Init(_view);
 //        Play.SetName("Play");
@@ -68,17 +60,31 @@ public class Mainmenu implements Scene//extends Activity implements OnClickListe
            // SampleEntity.Create();
         //    time = 0.5f;
        // }
-       // EntityManager.Instance.Update(dt);
+        EntityManager.Instance.Update(dt);
+//
+//        if (EntityManager.Instance.entityList.contai== false)
+//        {
+//            SceneManager.Instance.SetNextState("SampleGame");
+//        }
+       // if (a.IsActive()==false)
+        //{
+
+        //    a.SetIsClick(true);
+        //}
+
+
     }
 
     @Override
     public void Render(Canvas _canvas)
     {
-        float width = _canvas.getWidth()* 0.5f;//_view.getWidth() is 0  !!!
-        float height = _canvas.getHeight()* 0.6f;
+//        float width = _canvas.getWidth()* 0.5f;//_view.getWidth() is 0  !!!
+//        float height = _canvas.getHeight()* 0.6f;
 
-//        Play.SetPosition(new Vector2(width,height));
+      //  Play.SetPosition(new Vector2(width,height));
 //        Quit.SetPosition(new Vector2(width,_canvas.getHeight()*0.8f));
+        //PlayButton.Render(_canvas);
+
         EntityManager.Instance.Render(_canvas);
     }
 

@@ -97,9 +97,7 @@ public class EntityManager
     public void AddEntity(EntityBase _newEntity)
     {
         _newEntity.Init(view);
-        //entityList.add(_newEntity);
-        entityList.push(_newEntity);
-
+        entityList.add(_newEntity);
     }
 }
 

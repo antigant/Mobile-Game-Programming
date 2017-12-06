@@ -40,7 +40,7 @@ public class SampleGame implements Scene
         {
 
 
-            GameObject.Create();
+            //GameObject.Create();
             time = 1.5f;
         }
         EntityManager.Instance.Update(dt);

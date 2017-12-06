@@ -12,20 +12,20 @@ import android.view.SurfaceView;
 public class MenuBackground implements EntityBase
 {
     private Bitmap bmp = null;
-    private boolean isDone = false;
+    private boolean active = true;
 
     private float xPos, yPos, offset;
     private SurfaceView view = null;
 
     @Override
     public boolean IsActive() {
-        return isDone;
+        return active;
     }
 
     @Override
-    public void SetIsActive(boolean _isDone)
+    public void SetIsActive(boolean _active)
     {
-        isDone = _isDone;
+        active = _active;
     }
 
     @Override

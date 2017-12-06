@@ -14,7 +14,7 @@ import java.util.Random;
 // but using the name to differentiate between the function
 public class GameObject implements EntityBase, Collidable
 {
-    private Bitmap bmp = null;
+    protected Bitmap bmp = null;
     // name : game object name; type : game object type (for collision purpose)
     private String name, type;
     protected Vector2 pos = new Vector2(0.f, 0.f), vel = new Vector2(0.f, 0.f), scale = new Vector2(0.f, 0.f), dir = new Vector2(0.f, 0.f);
@@ -88,14 +88,15 @@ public class GameObject implements EntityBase, Collidable
         return moveSpeed;
     }
 
-    public static GameObject Create()
+    public GameObject Create()
     {
         GameObject result = new GameObject();
 //        result.SetIsActive(true);
 //        result.SetName("wild Object");
-//        result.SetScale(new Vector2(30f,30f));
-        //result.
-        EntityManager.Instance.AddEntity(result);
+//        //result.SetScale(new Vector2(30f,30f));
+//        //result.
+//        //result.SetBitmap();
+//        EntityManager.Instance.AddEntity(result);
         return result;
     }
 
