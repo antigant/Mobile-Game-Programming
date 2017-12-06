@@ -125,6 +125,7 @@ public class TouchManager
 
             case MotionEvent.ACTION_UP:
                 status = TouchState.UP;
+                swipeState = "NONE";
                 break;
         }
     }

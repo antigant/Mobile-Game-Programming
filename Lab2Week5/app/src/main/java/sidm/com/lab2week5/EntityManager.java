@@ -60,9 +60,15 @@ public class EntityManager
                         // We got our 2 collideables! Check collision here!
                         if(Collision.SphereToSphere(first.GetPosition().x, first.GetPosition().y, first.GetRadius(), second.GetPosition().x, second.GetPosition().y, second.GetRadius()))
                         {
-                            // COLLIDED! We notify the both of them
-                            first.OnHit(second);
-                            second.OnHit(first);
+                            GameObject first1 = (GameObject) first;
+                            GameObject second2 = (GameObject) second;
+
+                            if(Collision.CheckAABBCollision(first1, second2))
+                            {
+                                // COLLIDED! We notify the both of them
+                                first.OnHit(second);
+                                second.OnHit(first);
+                            }
                         }
                     }
                 }

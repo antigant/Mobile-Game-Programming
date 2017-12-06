@@ -24,7 +24,7 @@ public class PlayButton extends Button
     @Override
     public void Update()
     {
-        if (this.GetIsClick()==true)
+        if (this.GetIsClick())
         {
             SceneManager.Instance.SetNextState("SampleGame");
         }
@@ -48,8 +48,7 @@ public class PlayButton extends Button
     @Override
     public GameObject Create()
     {
-        PlayButton result = new PlayButton();
-        EntityManager.Instance.AddEntity(result);
-        return result;
+        EntityManager.Instance.AddEntity(this);
+        return this;
     }
 }
