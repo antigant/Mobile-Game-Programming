@@ -24,10 +24,10 @@ public class PlayButton extends Button
     @Override
     public void Update()
     {
-        if (GetIsClick())
-        {
-            SceneManager.Instance.SetNextState("SampleGame");
-        }
+//        if (GetIsClick())
+//        {
+//            //SceneManager.Instance.SetNextState("SampleGame");
+//        }
     }
 
     @Override
@@ -40,10 +40,7 @@ public class PlayButton extends Button
         //bmp is the image
         //this.SetScale(new Vector2 (_canvas.getWidth(),_canvas.getHeight()));
         _canvas.drawBitmap(bmp, GetPosition().x - bmp.getWidth() * 0.5f, GetPosition().y - bmp.getHeight() * 0.5f, null);
-//        _canvas.drawBitmap(bmp,bmp.getWidth() * 0.5f,bmp.getHeight() * 0.5f, null);
-
-        //Matrix transform;
-        //transform.
+//
     }
 
     @Override

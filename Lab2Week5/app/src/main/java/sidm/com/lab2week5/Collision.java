@@ -61,7 +61,7 @@ public class Collision
 
     public static boolean CheckPointAABB(Vector2 position, GameObject go)
     {
-        return (position.x < go.GetMaxAABB().x && position.x > go.GetMinAABB().x)
-                && (position.y < go.GetMaxAABB().y && position.y > go.GetMinAABB().y);
+        return (position.x <= go.GetMaxAABB().x && position.x >= go.GetMinAABB().x)
+                && (position.y <= go.GetMaxAABB().y && position.y >= go.GetMinAABB().y);
     }
 }

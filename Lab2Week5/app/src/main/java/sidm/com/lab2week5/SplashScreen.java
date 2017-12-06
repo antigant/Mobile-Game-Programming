@@ -8,7 +8,7 @@ public class SplashScreen implements Scene
 {
     // Declaration of Singleton
     public final static SplashScreen Instance = new SplashScreen();
-    private float time = 25.0f;
+    private float time = 5.0f;
 
 
 

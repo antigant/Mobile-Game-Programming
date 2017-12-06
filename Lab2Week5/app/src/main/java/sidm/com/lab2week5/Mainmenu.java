@@ -1,6 +1,7 @@
 package sidm.com.lab2week5;
 
 import android.graphics.Canvas;
+import android.text.method.Touch;
 import android.view.Menu;
 import android.view.SurfaceView;
 
@@ -9,9 +10,9 @@ public class Mainmenu implements Scene//extends Activity implements OnClickListe
     // Declaration of Singleton
     public final static Mainmenu Instance = new Mainmenu();
     private float time = 0.5f;
-
-    PlayButton playButton = new PlayButton();
-    MenuBackground backGround = new MenuBackground();
+    private boolean clicks;
+    PlayButton playButton;
+    MenuBackground backGround;
 //    GameObject Play;
 //    GameObject Quit;
     // This is to not allow anyone else to create another game
@@ -24,8 +25,10 @@ public class Mainmenu implements Scene//extends Activity implements OnClickListe
     public void Init(SurfaceView _view)
     {
         EntityManager.Instance.Init(_view);
-        backGround.Create();
-        playButton.Create();
+        backGround = new MenuBackground();
+        EntityManager.Instance.AddEntity(backGround);
+        playButton = new PlayButton();
+        EntityManager.Instance.AddEntity(playButton);
 //        a.Init(_view);
 //        EntityManager.Instance.AddEntity(a);
        // PlayButton.Init();
@@ -60,21 +63,14 @@ public class Mainmenu implements Scene//extends Activity implements OnClickListe
        // }
         EntityManager.Instance.Update();
 
+        if(TouchManager.Instance.IsDown())
+            clicks = true;
         if(Collision.CheckPointAABB(TouchManager.Instance.GetTouchPos(), playButton))
         {
-            playButton.SetIsClick(true);
+            if(clicks)
+            SceneManager.Instance.SetNextState("SampleGame");
+            clicks = false;
         }
-
-//
-//        if (EntityManager.Instance.entityList.contai== false)
-//        {
-//            SceneManager.Instance.SetNextState("SampleGame");
-//        }
-       // if (a.IsActive()==false)
-        //{
-
-        //    a.SetIsClick(true);
-        //}
 
         time -= Time.deltaTime;
     }

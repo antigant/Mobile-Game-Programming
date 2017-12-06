@@ -49,10 +49,10 @@ public class SampleBackground implements EntityBase
         _canvas.drawBitmap(bmp, xPos - bmp.getWidth() * 0.5f, yPos - bmp.getHeight() * 0.5f + offset, null);
     }
 
-    public static SampleBackground Create()
+    public SampleBackground Create()
     {
-        SampleBackground result = new SampleBackground();
-        EntityManager.Instance.AddEntity(result);
-        return result;
+//        SampleBackground result = new SampleBackground();
+        EntityManager.Instance.AddEntity(this);
+        return this;
     }
 }

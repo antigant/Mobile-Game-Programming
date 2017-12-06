@@ -1,6 +1,7 @@
 package sidm.com.lab2week5;
 
 import android.graphics.Canvas;
+import android.text.method.Touch;
 import android.view.Surface;
 import android.view.SurfaceView;
 
@@ -12,7 +13,10 @@ public class SampleGame implements Scene
     // Declaration of Singleton
     public final static SampleGame Instance = new SampleGame();
     private float time = 0.5f;
+    private boolean clicks;
 
+    PlayButton playButton;
+    SampleBackground background;
     Random ranGen = new Random();
 
     // This is to not allow anyone else to create another of this class
@@ -26,23 +30,28 @@ public class SampleGame implements Scene
     public void Init(SurfaceView _view)
     {
         EntityManager.Instance.Init(_view);
-        SampleBackground.Create();
-
+        background = new SampleBackground();
+        EntityManager.Instance.AddEntity(background);
+        playButton = new PlayButton();
+        EntityManager.Instance.AddEntity(playButton);
     }
 
     @Override
     public void Update()
     {
-        time -= Time.deltaTime;
-
-        if(time <= 0.f)
-        {
-
-
-            //GameObject.Create();
-            time = 1.5f;
-        }
         EntityManager.Instance.Update();
+        if(TouchManager.Instance.IsDown())
+            clicks = true;
+
+         if(Collision.CheckPointAABB(TouchManager.Instance.GetTouchPos(), playButton))
+        {
+            if(clicks)
+            {
+                SceneManager.Instance.SetNextState("MainMenu");
+                clicks = false;
+            }
+            //playButton.SetIsClick(true);
+        }
     }
 
     @Override
@@ -57,5 +66,8 @@ public class SampleGame implements Scene
     {
         // Clear the scene before going to the next
         time = 0.0f;
+        playButton.SetIsActive(false);
+        background.SetIsActive(false);
+
     }
 }
