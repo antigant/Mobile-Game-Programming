@@ -49,7 +49,7 @@ public class SceneManager
         }
     }
 
-    public void Update(float dt)
+    public void Update()
     {
         for(String key : m_sceneMap.keySet())
         {
@@ -59,7 +59,7 @@ public class SceneManager
                 m_currScene = m_nextScene;
                 m_currScene.Init(view);
             }
-            m_currScene.Update(dt);
+            m_currScene.Update();
         }
     }
 

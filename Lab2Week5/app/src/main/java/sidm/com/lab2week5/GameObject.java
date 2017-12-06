@@ -3,6 +3,7 @@ package sidm.com.lab2week5;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.view.SurfaceView;
 
 import java.util.Random;
@@ -17,6 +18,7 @@ public class GameObject implements EntityBase, Collidable
     protected Bitmap bmp = null;
     // name : game object name; type : game object type (for collision purpose)
     private String name, type;
+    private Vector2 minAABB = new Vector2(0.f, 0.f), maxAABB = new Vector2(0.f, 0.f);
     protected Vector2 pos = new Vector2(0.f, 0.f), vel = new Vector2(0.f, 0.f), scale = new Vector2(0.f, 0.f), dir = new Vector2(0.f, 0.f);
     protected float moveSpeed;
     protected boolean active;
@@ -123,6 +125,23 @@ public class GameObject implements EntityBase, Collidable
     }
 
     @Override
+    public void SetAABB(Vector2 _maxAABB, Vector2 _minAABB)
+    {
+        maxAABB = _maxAABB;
+        minAABB = _minAABB;
+    }
+
+    @Override
+    final public Vector2 GetMaxAABB() {
+        return maxAABB;
+    }
+
+    @Override
+    public Vector2 GetMinAABB() {
+        return minAABB;
+    }
+
+    @Override
     final public boolean IsActive()
     {
         return active;
@@ -139,7 +158,7 @@ public class GameObject implements EntityBase, Collidable
     }
 
     @Override
-    public void Update(float dt) {
+    public void Update() {
     }
 
     @Override

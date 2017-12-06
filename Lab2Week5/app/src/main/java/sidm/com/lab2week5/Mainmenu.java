@@ -18,7 +18,6 @@ public class Mainmenu implements Scene//extends Activity implements OnClickListe
 
     }
 
-
     @Override
     public void Init(SurfaceView _view)
     {
@@ -45,10 +44,8 @@ public class Mainmenu implements Scene//extends Activity implements OnClickListe
     }
 
     @Override
-    public void Update(float dt)
+    public void Update()
     {
-        time -= dt;
-
         //Play.Update(dt);
 //        if ()//tap on screen
 //        {
@@ -60,7 +57,7 @@ public class Mainmenu implements Scene//extends Activity implements OnClickListe
            // SampleEntity.Create();
         //    time = 0.5f;
        // }
-        EntityManager.Instance.Update(dt);
+        EntityManager.Instance.Update();
 //
 //        if (EntityManager.Instance.entityList.contai== false)
 //        {
@@ -72,7 +69,7 @@ public class Mainmenu implements Scene//extends Activity implements OnClickListe
         //    a.SetIsClick(true);
         //}
 
-
+        time -= Time.deltaTime;
     }
 
     @Override

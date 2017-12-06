@@ -22,7 +22,7 @@ public class PlayButton extends Button
     }
 
     @Override
-    public void Update(float dt)
+    public void Update()
     {
         if (this.GetIsClick()==true)
         {

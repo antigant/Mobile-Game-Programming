@@ -20,6 +20,9 @@ public class UpdateThread extends Thread
         // THIS IS WHERE WE SHOULD INIT OUR GAME STUFF
         // TODO : Hahaha so cool right :D
 
+        TouchManager.Instance.SetMaxTime(0.2f);
+        TouchManager.Instance.SetMinSwipeDist(25.f);
+
         //SampleGame.Instance.Init(_view);
         // TODO: REMEMBER TO FIRST INIT THE SCENE (FOR MC)
 //        SampleGame.Instance.Init(_view);
@@ -55,7 +58,7 @@ public class UpdateThread extends Thread
     {
         // Start up stuff
         long framePerSecond = 1000 / targetFPS; // 1000 is in milliseconds
-        long startTime = 0;
+        Time.startTime = 0;
 
         // We need another variable to calculate delta time
         long prevTime = System.nanoTime();
@@ -63,17 +66,18 @@ public class UpdateThread extends Thread
         while(IsRunning())
         {
             // Update
-            startTime = System.currentTimeMillis();
+            Time.startTime = System.currentTimeMillis();
 
             // This part is to get delta time using prev time vs curr time
             long currTime = System.nanoTime();
-            float deltaTime = (float)((currTime - prevTime) / 1000000000.0f); // to convert it back to seconds from nanoseconds
+            Time.deltaTime = (float)((currTime - prevTime) / 1000000000.0f); // to convert it back to seconds from nanoseconds
+            Time.time += Time.deltaTime;
             prevTime = currTime;
 
             // We wanna have this awesome update ^_^
 
 //            SampleGame.Instance.Update(deltaTime);
-            SceneManager.Instance.Update(deltaTime);
+            SceneManager.Instance.Update();
 
             // Render
             Canvas canvas = holder.lockCanvas(null);
@@ -100,7 +104,7 @@ public class UpdateThread extends Thread
             // Post Update/Render
             try
             {
-                long sleepTime = framePerSecond - (System.currentTimeMillis() - startTime);
+                long sleepTime = framePerSecond - (System.currentTimeMillis() - Time.startTime);
 
                 if(sleepTime > 0)
                     sleep(sleepTime);
@@ -112,3 +116,4 @@ public class UpdateThread extends Thread
         }
     }
 }
+

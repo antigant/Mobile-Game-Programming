@@ -11,6 +11,6 @@ public interface EntityBase
     //Vector2 GetPosition(){ return pos;};
 
     void Init(SurfaceView _view);
-    void Update(float dt);
+    void Update();
     void Render(Canvas _canvas);
 }

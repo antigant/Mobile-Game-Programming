@@ -44,9 +44,8 @@ public class SplashScreen implements Scene
     }
 
     @Override
-    public void Update(float dt)
+    public void Update()
     {
-        time -= dt;
 
         //Play.Update(dt);
 //        if ()//tap on screen

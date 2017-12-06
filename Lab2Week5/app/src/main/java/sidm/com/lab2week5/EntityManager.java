@@ -25,14 +25,14 @@ public class EntityManager
         view = _view;
     }
 
-    public void Update(float dt)
+    public void Update()
     {
         // Update Everything!
         for(EntityBase currEntity : entityList)
         {
-            currEntity.Update(dt);
+            currEntity.Update();
 
-            if(currEntity.IsActive()== false)
+            if(currEntity.IsActive() == false)
             {
                 // We need to remove this!
                 removalList.add(currEntity);
@@ -67,7 +67,7 @@ public class EntityManager
                     }
                 }
             }
-            if(currEntity.IsActive()== false)
+            if(currEntity.IsActive() == false)
             {
                 // We need to remove this!
                 removalList.add(currEntity);

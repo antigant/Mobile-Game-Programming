@@ -21,80 +21,47 @@ public class Collision
         return true;
     }
 
-//    public static boolean CheckOverlap(Vector2 thisMinAABB, Vector2 thisMaxAABB, Vector2 thatMinAABB, Vector2 thatMaxAABB)
-//    {
-//        // Check if this object is overlapping that object
-//        if (thatMinAABB >= thisMinAABB && thatMinAABB <= thisMaxAABB
-//                ||
-//                thatMaxAABB >= thisMinAABB && thatMaxAABB <= thisMaxAABB)
-//            return true;
-//
-//        // Check if that object is overlapping this object
-//        if (thisMinAABB >= thatMinAABB && thisMinAABB <= thatMaxAABB
-//                ||
-//                thisMaxAABB >= thatMinAABB && thisMaxAABB <= thatMaxAABB)
-//            return true;
-//
-//        // Check if this object is within that object
-//        if (thisMinAABB >= thatMinAABB && thisMinAABB <= thatMaxAABB
-//                &&
-//                thisMaxAABB >= thatMinAABB && thisMaxAABB <= thatMaxAABB)
-//            return true;
-//
-//        // Check if that object is within this object
-//        if (thatMinAABB >= thisMinAABB && thatMinAABB <= thisMaxAABB
-//                &&
-//                thatMaxAABB >= thisMinAABB && thatMaxAABB <= thisMaxAABB)
-//            return true;
-//
-//        return false;
-//    }
-//    // Check if this entity collided with another entity, but both must have collider
-//    public static boolean AABB(EntityBase ThisEntity, EntityBase ThatEntity)
-//    {
-//        Vector2 thisMinAABB =ThisEntity
-//    }
+    private static boolean CheckOverLap(Vector2 thisMinAABB, Vector2 thisMaxAABB, Vector2 thatMinAABB, Vector2 thatMaxAABB)
+    {
+        // Check if this object is overlapping that object
+        if (thatMinAABB.TwoVectorGreaterEqual(thisMinAABB)  && thatMinAABB.TwoVectorLesserEqual(thisMaxAABB)
+                || thatMaxAABB.TwoVectorGreaterEqual(thisMinAABB) && thatMaxAABB.TwoVectorLesserEqual(thisMaxAABB))
+            return true;
 
-//{
-//    // Get the colliders for the 2 entties
-//    CCollider *thisCollider = dynamic_cast<CCollider*>(ThisEntity);
-//    CCollider *thatCollider = dynamic_cast<CCollider*>(ThatEntity);
-//
-//    // Get the minAABB and maxAABB for each entitiy
-//    Vector3 thisMinAABB = ThisEntity->GetPosition() + thisCollider->GetMinAABB();
-//    Vector3 thisMaxAABB = ThisEntity->GetPosition() + thisCollider->GetMaxAABB();
-//    Vector3 thatMinAABB = ThatEntity->GetPosition() + thatCollider->GetMinAABB();
-//    Vector3 thatMaxAABB = ThatEntity->GetPosition() + thatCollider->GetMaxAABB();
-//
-//    // Check for overlap
-//    if (CheckOverlap(thisMinAABB, thisMaxAABB, thatMinAABB, thatMaxAABB))
-//        return true;
-//
-//    // if AABB collision check fails, then we need to check the other corners of the bounding boxes to
-//    // do more collision checks with other points on each bounding box
-//
-//    //Vector3 altThisMinAABB, altThisMaxAABB;
-//    //altThisMaxAABB.Set(thisMaxAABB.x - thisCollider->GetMaxAABB().x, thisMaxAABB.y - thisCollider->GetMaxAABB().y, thisMaxAABB.z - thisCollider->GetMaxAABB().z);
-//    //altThisMinAABB.Set(thisMinAABB.x - thisCollider->GetMinAABB().x, thisMinAABB.y - thisCollider->GetMinAABB().y, thisMinAABB.z - thisCollider->GetMinAABB().z);
-//
-//    Vector3 altXThisMinAABB, altXThisMaxAABB, altYThisMinAABB, altYThisMaxAABB, altZThisMinAABB, altZThisMaxAABB;
-//    altXThisMinAABB.Set(thisMaxAABB.x, thisMinAABB.y, thisMinAABB.z);
-//    altXThisMaxAABB.Set(thisMinAABB.x, thisMaxAABB.y, thisMaxAABB.z);
-//
-//    altYThisMinAABB.Set(thisMinAABB.x, thisMaxAABB.y, thisMinAABB.z);
-//    altYThisMaxAABB.Set(thisMaxAABB.x, thisMinAABB.y, thisMaxAABB.z);
-//
-//    altZThisMinAABB.Set(thisMinAABB.x, thisMinAABB.y, thisMaxAABB.z);
-//    altZThisMaxAABB.Set(thisMaxAABB.x, thisMaxAABB.y, thisMinAABB.z);
-//    // Check for overlap
-//    if (CheckOverlap(altXThisMinAABB, altXThisMaxAABB, thatMinAABB, thatMaxAABB))
-//        return true;
-//    if (CheckOverlap(altYThisMinAABB, altYThisMaxAABB, thatMinAABB, thatMaxAABB))
-//        return true;
-//    if (CheckOverlap(altZThisMinAABB, altZThisMaxAABB, thatMinAABB, thatMaxAABB))
-//        return true;
-//
-//    return false;
-//}
+        // Check if that object is overlapping this object
+        if (thisMinAABB.TwoVectorGreaterEqual(thatMinAABB) && thisMinAABB.TwoVectorLesserEqual(thatMaxAABB)
+                || thisMaxAABB.TwoVectorGreaterEqual(thatMinAABB) && thisMaxAABB.TwoVectorLesserEqual(thatMaxAABB))
+            return true;
 
+        // Check if this object is within that object
+        if (thisMinAABB.TwoVectorGreaterEqual(thatMinAABB)  && thisMinAABB.TwoVectorLesserEqual(thatMaxAABB)
+                && thisMaxAABB.TwoVectorGreaterEqual(thatMinAABB) && thisMaxAABB.TwoVectorLesserEqual(thatMaxAABB))
+            return true;
+
+        // Check if that object is within this object
+        if (thatMinAABB.TwoVectorGreaterEqual(thisMinAABB) && thatMinAABB.TwoVectorLesserEqual(thisMaxAABB)
+                && thatMaxAABB.TwoVectorGreaterEqual(thisMinAABB)  && thatMaxAABB.TwoVectorLesserEqual(thisMaxAABB))
+            return true;
+
+        return false;
+    }
+
+    public static boolean CheckAABBCollision(GameObject thisGO, GameObject thatGO)
+    {
+        Vector2 thisMinAABB = thisGO.GetPosition().Add(thisGO.GetMinAABB());
+        Vector2 thisMaxAABB = thisGO.GetPosition().Add(thisGO.GetMaxAABB());
+        Vector2 thatMinAABB = thatGO.GetPosition().Add(thatGO.GetMinAABB());
+        Vector2 thatMaxAABB = thatGO.GetPosition().Add(thatGO.GetMaxAABB());
+
+        // Check for overlap
+        if(CheckOverLap(thisMinAABB, thisMaxAABB, thatMinAABB, thatMaxAABB))
+            return true;
+        return false;
+    }
+
+    public static boolean CheckPointAABB(Vector2 position, GameObject go)
+    {
+        return (position.x < go.GetMaxAABB().x && position.x > go.GetMinAABB().x)
+                && (position.y < go.GetMaxAABB().y && position.y > go.GetMinAABB().y);
+    }
 }

@@ -19,7 +19,7 @@ public class Projectile extends GameObject{
     }
 
     @Override
-    public void Update(float dt)
+    public void Update()
     {
 
     }
