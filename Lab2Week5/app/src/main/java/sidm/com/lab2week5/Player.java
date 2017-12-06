@@ -6,8 +6,36 @@ import android.view.SurfaceView;
 
 public class Player extends GameObject
 {
+    public final static Player Instance = new Player();
+    private Player() {} // Private constructor to not let other create another instance
+    private Health playerHealth;
+    private boolean isDead = false;
+
+    private Vector2 minAABB, maxAABB;
+
+    // Variables
     private float m_fJumpSpeed, m_fJumpAcceleration, m_fFallSpeed, m_fFallAcceleration;
     private boolean m_bJump, m_bFalling;
+
+    public void SetJumpSpeed(final float m_fJumpSpeed)
+    {
+        this.m_fJumpSpeed = m_fJumpSpeed;
+    }
+
+    public void SetJumpAcceleration(final float m_fJumpAcceleration)
+    {
+        this.m_fJumpAcceleration = m_fJumpAcceleration;
+    }
+
+    public void SetFallSpeed(final float m_fFallSpeed)
+    {
+        this.m_fFallSpeed = m_fFallSpeed;
+    }
+
+    public void SetFallAcceleration(final float m_fFallAcceleration)
+    {
+        this.m_fFallAcceleration = m_fFallAcceleration;
+    }
 
     public void SetToJump(boolean isOnJumpUpwards)
     {
@@ -39,6 +67,19 @@ public class Player extends GameObject
         m_fFallSpeed = m_fFallSpeed + m_fFallAcceleration * Time.deltaTime;
     }
 
+    public void SetHealth(float amt)
+    {
+        playerHealth.AddHealth(amt);
+
+        if(playerHealth.GetHealth() <= 0.f)
+            SetIsDead(true);
+    }
+
+    public void SetIsDead(final boolean isDead)
+    {
+        this.isDead = isDead;
+    }
+
     @Override
     public void Init(SurfaceView _view)
     {
@@ -48,6 +89,7 @@ public class Player extends GameObject
     @Override
     public void Update()
     {
+
         if (TouchManager.Instance.GetSwipeState() == "RIGHT")
         {
 
@@ -61,7 +103,7 @@ public class Player extends GameObject
     @Override
     public void Render(Canvas _canvas)
     {
-
+        _canvas.drawBitmap(bmp, GetPosition().x - bmp.getWidth() * 0.5f, GetPosition().y - bmp.getHeight() * 0.5f, null);
     }
 
     @Override
@@ -79,3 +121,4 @@ public class Player extends GameObject
         }
     }
 }
+
