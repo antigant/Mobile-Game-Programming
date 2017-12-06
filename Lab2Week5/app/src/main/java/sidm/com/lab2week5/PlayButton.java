@@ -12,10 +12,10 @@ public class PlayButton extends Button
     @Override
     public void Init(SurfaceView _view)
     {
-        this.SetName("Play");
-        this.SetType("button");
-        this.SetIsActive(true);
-        this.SetBitmap(_view,R.drawable.start );
+        SetName("Play");
+        SetType("button");
+        SetIsActive(true);
+        SetBitmap(_view,R.drawable.start );
         //SetScale(new Vector2(0.3f,0.3f));
         //_view.getWidth();
         //_view.getMeasuredWidth();
@@ -34,7 +34,8 @@ public class PlayButton extends Button
     public void Render(Canvas _canvas)
     {
         //set position
-        this.SetPosition(new Vector2(_canvas.getWidth() * 0.5f,_canvas.getHeight() * 0.7f));
+        SetPosition(new Vector2(_canvas.getWidth() * 0.5f,_canvas.getHeight() * 0.7f));
+        SetAABB(new Vector2(pos.x + bmp.getWidth() * 0.5f, pos.y + bmp.getHeight() * 0.5f), new Vector2(pos.x - bmp.getWidth() * 0.5f, pos.y - bmp.getHeight() * 0.5f));
         //draws the image
         //bmp is the image
         //this.SetScale(new Vector2 (_canvas.getWidth(),_canvas.getHeight()));

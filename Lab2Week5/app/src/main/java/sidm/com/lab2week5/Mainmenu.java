@@ -1,6 +1,7 @@
 package sidm.com.lab2week5;
 
 import android.graphics.Canvas;
+import android.view.Menu;
 import android.view.SurfaceView;
 
 public class Mainmenu implements Scene//extends Activity implements OnClickListener
@@ -9,7 +10,8 @@ public class Mainmenu implements Scene//extends Activity implements OnClickListe
     public final static Mainmenu Instance = new Mainmenu();
     private float time = 0.5f;
 
-    PlayButton a = new PlayButton();
+    PlayButton playButton = new PlayButton();
+    MenuBackground backGround = new MenuBackground();
 //    GameObject Play;
 //    GameObject Quit;
     // This is to not allow anyone else to create another game
@@ -22,9 +24,8 @@ public class Mainmenu implements Scene//extends Activity implements OnClickListe
     public void Init(SurfaceView _view)
     {
         EntityManager.Instance.Init(_view);
-        MenuBackground.Create();
-
-        a.Create();
+        backGround.Create();
+        playButton.Create();
 //        a.Init(_view);
 //        EntityManager.Instance.AddEntity(a);
        // PlayButton.Init();
@@ -58,6 +59,12 @@ public class Mainmenu implements Scene//extends Activity implements OnClickListe
         //    time = 0.5f;
        // }
         EntityManager.Instance.Update();
+
+        if(Collision.CheckPointAABB(TouchManager.Instance.GetTouchPos(), playButton))
+        {
+            playButton.SetIsClick(true);
+        }
+
 //
 //        if (EntityManager.Instance.entityList.contai== false)
 //        {
@@ -89,6 +96,8 @@ public class Mainmenu implements Scene//extends Activity implements OnClickListe
     public void Exit()
     {
         // Clear the scene before going to the next
+        playButton.SetIsActive(false);
+        backGround.SetIsActive(false);
 
     }
 

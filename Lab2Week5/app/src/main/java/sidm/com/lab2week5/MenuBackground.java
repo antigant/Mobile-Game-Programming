@@ -5,9 +5,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.view.SurfaceView;
 
-/**
- * Created by janra on 4/12/2017.
- */
 
 public class MenuBackground implements EntityBase
 {
