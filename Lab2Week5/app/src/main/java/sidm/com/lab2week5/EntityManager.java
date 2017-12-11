@@ -39,7 +39,7 @@ public class EntityManager
             }
         }
 
-       // RemoveEntity();
+        RemoveEntity();
 
         for(int i = 0; i < entityList.size(); ++i)
         {
