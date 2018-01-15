@@ -9,6 +9,8 @@ import android.view.WindowManager;
 // Activity is like an .exe file, view is what is rendered on the screen
 public class GamePage extends Activity
 {
+    public static GamePage Instance = null;
+
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
@@ -16,6 +18,7 @@ public class GamePage extends Activity
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        Instance = this;
         // We don't have game view yet, so GG. Lets keep it commented :(
         setContentView(new GameView(this));
     }

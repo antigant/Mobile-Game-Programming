@@ -24,11 +24,9 @@ public class UpdateThread extends Thread
         TouchManager.Instance.SetMaxTime(0.2f);
         TouchManager.Instance.SetMinSwipeDist(25.f);
 
-        //SampleGame.Instance.Init(_view);
         // TODO: REMEMBER TO FIRST INIT THE SCENE (FOR MC)
-//        SampleGame.Instance.Init(_view);
         SceneManager.Instance.SetGameView(_view);
-        AddScene();
+        GameSystem.Instance.Init(_view);
     }
 
     public boolean IsRunning()
@@ -44,15 +42,6 @@ public class UpdateThread extends Thread
     public void Terminate()
     {
         isRunning = false;
-    }
-
-    private void AddScene()
-    {
-        // Init all the scene in this function, any changes just change here can alr
-        SceneManager.Instance.AddState("SplashScreen",SplashScreen.Instance);
-        SceneManager.Instance.AddState("MainMenu", Mainmenu.Instance);
-        SceneManager.Instance.AddState("SampleGame", SampleGame.Instance);
-
     }
 
     @Override
