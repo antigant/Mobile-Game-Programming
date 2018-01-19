@@ -35,6 +35,7 @@ public class Mainmenu implements Scene//extends Activity implements OnClickListe
         EntityManager.Instance.AddEntity(backGround);
         playButton = new PlayButton();
         EntityManager.Instance.AddEntity(playButton);
+        clicks = false;
 //        a.Init(_view);
 //        EntityManager.Instance.AddEntity(a);
        // PlayButton.Init();
@@ -74,8 +75,10 @@ public class Mainmenu implements Scene//extends Activity implements OnClickListe
         if(Collision.CheckPointAABB(TouchManager.Instance.GetTouchPos(), playButton))
         {
             if(clicks)
-            SceneManager.Instance.SetNextState("SampleGame");
-            clicks = false;
+            {
+                SceneManager.Instance.SetNextState("SampleGame");
+                clicks = false;
+            }
         }
 
         time -= Time.deltaTime;

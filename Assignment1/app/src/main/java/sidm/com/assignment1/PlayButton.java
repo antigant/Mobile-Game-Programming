@@ -34,7 +34,7 @@ public class PlayButton extends Button
     public void Render(Canvas _canvas)
     {
         //set position
-        SetPosition(new Vector2(_canvas.getWidth() * 0.5f,_canvas.getHeight() * 0.7f));
+        SetPosition(new Vector2(_canvas.getWidth() * 0.5f,_canvas.getHeight() * 0.45f));
         SetAABB(new Vector2(pos.x + bmp.getWidth() * 0.5f, pos.y + bmp.getHeight() * 0.5f), new Vector2(pos.x - bmp.getWidth() * 0.5f, pos.y - bmp.getHeight() * 0.5f));
         //draws the image
         //bmp is the image

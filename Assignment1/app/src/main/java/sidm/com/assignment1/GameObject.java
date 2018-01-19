@@ -16,12 +16,18 @@ import java.util.Random;
 public class GameObject implements EntityBase, Collidable
 {
     protected Bitmap bmp = null;
+    protected Sprite spritesheet = null;
     // name : game object name; type : game object type (for collision purpose)
     private String name, type;
-    private Vector2 minAABB = new Vector2(0.f, 0.f), maxAABB = new Vector2(0.f, 0.f);
-    protected Vector2 pos = new Vector2(0.f, 0.f), vel = new Vector2(0.f, 0.f), scale = new Vector2(0.f, 0.f), dir = new Vector2(0.f, 0.f);
+    private Vector2 minAABB = new Vector2(0.f, 0.f);
+    private Vector2 maxAABB = new Vector2(0.f, 0.f);
+    protected Vector2 pos = new Vector2(0.f, 0.f);
+    protected Vector2 vel = new Vector2(0.f, 0.f), scale = new Vector2(0.f, 0.f);
+    protected Vector2 dir = new Vector2(0.f, 0.f);
     protected float moveSpeed;
     protected boolean active;
+    protected int renderLayer = 0;
+
 
     // If don't init the bitmap, will have no image
     public void SetBitmap(SurfaceView _view, int resource)
@@ -111,7 +117,7 @@ public class GameObject implements EntityBase, Collidable
     @Override
     final public float GetRadius()
     {
-        return bmp.getHeight() * 0.5f;
+        return spritesheet.GetHeight() * 0.5f;
     }
 
     @Override

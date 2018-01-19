@@ -15,7 +15,7 @@ public class SampleGame implements Scene
     private float time = 0.5f;
     private boolean clicks;
 
-    PlayButton playButton;
+//    PlayButton playButton;
     SampleBackground background;
     Random ranGen = new Random();
 
@@ -38,32 +38,33 @@ public class SampleGame implements Scene
         EntityManager.Instance.Init(_view);
         background = new SampleBackground();
         EntityManager.Instance.AddEntity(background);
-        playButton = new PlayButton();
-        EntityManager.Instance.AddEntity(playButton);
+//        playButton = new PlayButton();
+//        EntityManager.Instance.AddEntity(playButton);
+
+        clicks = false;
     }
 
     @Override
     public void Update()
     {
         EntityManager.Instance.Update();
-        if(TouchManager.Instance.IsDown())
-            clicks = true;
-
-         if(Collision.CheckPointAABB(TouchManager.Instance.GetTouchPos(), playButton))
-        {
-            if(clicks)
-            {
-                SceneManager.Instance.SetNextState("MainMenu");
-                clicks = false;
-            }
-            //playButton.SetIsClick(true);
-        }
+//        if(TouchManager.Instance.IsDown())
+//            clicks = true;
+//
+//         if(Collision.CheckPointAABB(TouchManager.Instance.GetTouchPos(), playButton))
+//        {
+//            if(clicks)
+//            {
+//                SceneManager.Instance.SetNextState("MainMenu");
+//                clicks = false;
+//            }
+//            //playButton.SetIsClick(true);
+//        }
     }
 
     @Override
     public void Render(Canvas _canvas)
     {
-
         EntityManager.Instance.Render(_canvas);
     }
 
@@ -72,7 +73,7 @@ public class SampleGame implements Scene
     {
         // Clear the scene before going to the next
         time = 0.0f;
-        playButton.SetIsActive(false);
+//        playButton.SetIsActive(false);
         background.SetIsActive(false);
 
     }

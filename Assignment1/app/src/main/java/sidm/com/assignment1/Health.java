@@ -4,10 +4,10 @@ public class Health
 {
     private float health, maxHealth;
 
-    public void SetMaxHealth(final float maxHealth)
+    public void SetMaxHealth(final float _maxHealth)
     {
-        this.maxHealth = maxHealth;
-        health = maxHealth;
+        maxHealth = _maxHealth;
+        health = _maxHealth;
     }
 
     public void AddHealth(float amt)

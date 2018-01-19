@@ -3,6 +3,7 @@ package sidm.com.assignment1;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.view.SurfaceView;
 
 public class SplashBackground implements EntityBase{
@@ -12,6 +13,7 @@ public class SplashBackground implements EntityBase{
 
     private float xPos, yPos, offset;
     private SurfaceView view = null;
+    Matrix transform = new Matrix();
 
     @Override
     public boolean IsActive() {
@@ -28,7 +30,7 @@ public class SplashBackground implements EntityBase{
     public void Init(SurfaceView _view)
     {
         view = _view;
-        bmp = BitmapFactory.decodeResource(_view.getResources(), R.drawable.splash);
+        bmp = BitmapFactory.decodeResource(_view.getResources(), R.drawable.splash_screen);
     }
 
     @Override
@@ -40,12 +42,15 @@ public class SplashBackground implements EntityBase{
     @Override
     public void Render(Canvas _canvas)
     {
-        xPos = 0.5f * view.getWidth();
+        xPos = 0.5f * view.getWidth() - 50.f;
         yPos = 0.5f * view.getHeight();
-
-        float xOffset = (float)Math.sin(offset) * bmp.getWidth() * 0.3f;
-
-        _canvas.drawBitmap(bmp, xPos - bmp.getWidth() * 0.5f, yPos - bmp.getHeight() * 0.5f + offset, null);
+//
+//        float xOffset = (float)Math.sin(offset) * bmp.getWidth() * 0.3f;
+//
+//        _canvas.drawBitmap(bmp, xPos - bmp.getWidth() * 0.5f, yPos - bmp.getHeight() * 0.5f + offset, null);
+        transform.setScale(1.f, 1.f);
+        transform.postTranslate(xPos - _canvas.getWidth() * 0.5f, yPos -  _canvas.getHeight() * 0.5f);
+        _canvas.drawBitmap(bmp, transform, null);
     }
 
     public  SplashBackground Create()

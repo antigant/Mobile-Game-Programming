@@ -11,8 +11,6 @@ public class Player extends GameObject
     private Health playerHealth;
     private boolean isDead = false;
 
-    private Vector2 minAABB, maxAABB;
-
     // Variables
     private float m_fJumpSpeed, m_fJumpAcceleration, m_fFallSpeed, m_fFallAcceleration;
     private boolean m_bJump, m_bFalling;

@@ -33,7 +33,7 @@ public class MenuBackground implements EntityBase
     {
         active = true;
         view = _view;
-        bmp = BitmapFactory.decodeResource(_view.getResources(), R.drawable.angrybirds_drawbackground325);
+        bmp = BitmapFactory.decodeResource(_view.getResources(), R.drawable.menu_background);
     }
 
     @Override
@@ -44,12 +44,12 @@ public class MenuBackground implements EntityBase
     @Override
     public void Render(Canvas _canvas)
     {
-        xPos = 0.5f * view.getWidth();
+        xPos = 0.5f * view.getWidth() - 50.f;
         yPos = 0.5f * view.getHeight();
-
-        transform.setTranslate(_canvas.getWidth() * 0.5f, _canvas.getHeight() * 0.5f);
-        transform.setScale(1.25f, 3f);
-//        transform.postTranslate(bmp.getWidth() * 0.5f, bmp.getHeight() * 0.5f + offset);
+//        transform.setTranslate(_canvas.getWidth() * 0.5f, _canvas.getHeight() * 0.5f);
+        transform.setScale(1.f, 1.f);
+        transform.postTranslate(xPos - _canvas.getWidth() * 0.5f, yPos -  _canvas.getHeight() * 0.5f);
+//        transform.postTranslate(bmp.getWidth() * 0.5f, bmp.getHeight() * 0.5f);
         _canvas.drawBitmap(bmp, transform, null);
 
 //        _canvas.drawBitmap(bmp, xPos - bmp.getWidth() * 0.5f, yPos - bmp.getHeight() * 0.5f + offset, null);
