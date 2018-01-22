@@ -33,4 +33,11 @@ public class GamePage extends Activity
 
         return true;
     }
+
+    @Override
+    public void onStop()
+    {
+        super.onStop();
+        // Can handle what happens to our own systems when activity stops~
+    }
 }

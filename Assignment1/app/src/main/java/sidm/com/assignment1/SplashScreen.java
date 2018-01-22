@@ -30,6 +30,8 @@ public class SplashScreen implements Scene
     {
         EntityManager.Instance.Init(_view);
         backGround.Create();
+        backGround.Init(_view);
+
         //MenuBackground.Create();
 
        // PlayButton a = new PlayButton();
@@ -86,6 +88,11 @@ public class SplashScreen implements Scene
     {
         // Clear the scene before going to the next
         backGround.SetIsActive(false);
+    }
+
+    @Override
+    public void Reset() {
+
     }
 
 

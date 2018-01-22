@@ -30,6 +30,9 @@ public class EntityManager
         // Update Everything!
         for(EntityBase currEntity : entityList)
         {
+            if(!currEntity.GetIsInit())
+                currEntity.Init(view);
+
             currEntity.Update();
 
             if(currEntity.IsActive() == false)
@@ -88,7 +91,8 @@ public class EntityManager
         // TODO render @ EntityManager
         for(EntityBase currEntity : entityList)
         {
-            currEntity.Render(_canvas);
+            if(currEntity.GetIsInit())
+                currEntity.Render(_canvas);
         }
     }
 
@@ -102,7 +106,6 @@ public class EntityManager
 
     public void AddEntity(EntityBase _newEntity)
     {
-        _newEntity.Init(view);
         entityList.add(_newEntity);
     }
 }

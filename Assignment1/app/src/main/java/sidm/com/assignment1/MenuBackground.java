@@ -16,6 +16,7 @@ public class MenuBackground implements EntityBase
     private SurfaceView view = null;
     Matrix transform = new Matrix();
 
+    private boolean isInit = false;
 
     @Override
     public boolean IsActive() {
@@ -29,11 +30,23 @@ public class MenuBackground implements EntityBase
     }
 
     @Override
+    public boolean GetIsInit() {
+        return isInit;
+    }
+
+    @Override
+    public void SetIsInit(boolean _isInit) {
+        isInit = _isInit;
+    }
+
+    @Override
     public void Init(SurfaceView _view)
     {
         active = true;
         view = _view;
         bmp = BitmapFactory.decodeResource(_view.getResources(), R.drawable.menu_background);
+
+        isInit = true;
     }
 
     @Override

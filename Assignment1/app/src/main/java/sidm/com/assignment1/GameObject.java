@@ -27,7 +27,7 @@ public class GameObject implements EntityBase, Collidable
     protected float moveSpeed;
     protected boolean active;
     protected int renderLayer = 0;
-
+    protected boolean isInit = false;
 
     // If don't init the bitmap, will have no image
     public void SetBitmap(SurfaceView _view, int resource)
@@ -151,6 +151,16 @@ public class GameObject implements EntityBase, Collidable
     public void SetIsActive(final boolean _active)
     {
         active = _active;
+    }
+
+    @Override
+    public boolean GetIsInit() {
+        return isInit;
+    }
+
+    @Override
+    public void SetIsInit(boolean _isInit) {
+        isInit = _isInit;
     }
 
     @Override

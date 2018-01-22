@@ -82,6 +82,7 @@ public class Player extends GameObject
     public void Init(SurfaceView _view)
     {
         SetBitmap(_view, R.drawable.player);
+        isInit = true;
     }
 
     @Override

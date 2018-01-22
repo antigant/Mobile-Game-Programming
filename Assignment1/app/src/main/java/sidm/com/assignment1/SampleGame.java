@@ -76,5 +76,23 @@ public class SampleGame implements Scene
 //        playButton.SetIsActive(false);
         background.SetIsActive(false);
 
+        // Do save file here
+
+        // Possible solution 1:
+        // Clean up all our entities
+        // EntityManager.Instance.Destory(SamplePauseButton)
+        // .. Do the same for all others
+        // Step 1 : Write all the delete and clean up functions for all other managers
+        // Step 2 : Call them here~
+        // Step 3 :
+
+    }
+
+    @Override
+    public void Reset() {
+        // Potential Solution 2 :
+        // Add reset functions or use the SceneManager to update all entities
+        // Get all our objects to reset
+
     }
 }

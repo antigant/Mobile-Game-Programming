@@ -11,4 +11,6 @@ public interface Scene
     void Update();
     void Render(Canvas _canvas);
     void Exit();
+
+    void Reset();
 }

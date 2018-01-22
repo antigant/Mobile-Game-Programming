@@ -81,4 +81,12 @@ public class SceneManager
 
         return m_currScene.GetName();
     }
+
+    public void ResetCurrentState()
+    {
+        if(m_currScene == null)
+            return;
+
+        m_currScene.Reset();
+    }
 }

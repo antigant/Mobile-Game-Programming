@@ -2,7 +2,7 @@ package sidm.com.assignment1;
 
 import android.view.SurfaceView;
 
-public abstract class Button extends GameObject
+public abstract class CButton extends GameObject
 {
     protected boolean isClick = false ;
 
@@ -16,4 +16,5 @@ public abstract class Button extends GameObject
         return isClick;
     }
 }
+
 

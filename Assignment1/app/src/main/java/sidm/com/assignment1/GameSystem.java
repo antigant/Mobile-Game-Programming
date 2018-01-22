@@ -7,8 +7,6 @@ import android.view.SurfaceView;
 public class GameSystem
 {
     public final static GameSystem Instance = new GameSystem();
-
-
     public final static String SHARED_PREF_ID = "GameSaveFile"; // Game Save File ID
 
     private boolean isPaused = false;
