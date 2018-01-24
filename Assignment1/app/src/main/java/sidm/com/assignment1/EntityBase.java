@@ -9,7 +9,8 @@ public interface EntityBase
     void SetIsActive(boolean _active);
 
     boolean GetIsInit();
-    void SetIsInit(boolean _isInit);
+    int GetRenderLayer();
+    void SetRenderLayer(int _newLayer);
 
     //Vector2 GetPosition(){ return pos;};
 

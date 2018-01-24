@@ -35,6 +35,17 @@ public class GameObject implements EntityBase, Collidable
         bmp = BitmapFactory.decodeResource(_view.getResources(), resource);
     }
 
+    public void SetSpritesheet(SurfaceView _view, int _resource, int _row, int _col, int _fps)
+    {
+        bmp = BitmapFactory.decodeResource(_view.getResources(), _resource);
+        spritesheet = new Sprite(bmp, _row, _col, _fps);
+    }
+
+//    public Sprite GetSpritesheet()
+//    {
+//        return spritesheet;
+//    }
+
     public void SetName(String _name)
     {
         name = _name;
@@ -159,9 +170,16 @@ public class GameObject implements EntityBase, Collidable
     }
 
     @Override
-    public void SetIsInit(boolean _isInit) {
-        isInit = _isInit;
+    public int GetRenderLayer() {
+        return renderLayer;
     }
+
+    @Override
+    public void SetRenderLayer(int _newLayer) {
+        renderLayer = _newLayer;
+    }
+
+    public void SetIsInit(final boolean _isInit) { isInit = _isInit; }
 
     @Override
     public void Init(SurfaceView _view) {

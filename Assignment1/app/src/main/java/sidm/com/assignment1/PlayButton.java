@@ -8,6 +8,8 @@ import android.view.SurfaceView;
 
 public class PlayButton extends CButton
 {
+    private boolean playClicked;
+
     @Override
     public void SetPosition(Vector2 _pos)
     {
@@ -21,10 +23,11 @@ public class PlayButton extends CButton
         SetName("play button");
         SetType("button");
         SetIsActive(true);
-        SetBitmap(_view,R.drawable.start );
+        SetBitmap(_view,R.drawable.play_button );
         SetPosition(new Vector2(550.f, 1000.f));
         SetAABB(new Vector2(pos.x + bmp.getWidth() * 0.5f, pos.y + bmp.getHeight() * 0.5f), new Vector2(pos.x - bmp.getWidth() * 0.5f, pos.y - bmp.getHeight() * 0.5f));
 
+        playClicked = false;
         isInit = true;
         //SetScale(new Vector2(0.3f,0.3f));
         //_view.getWidth();
@@ -34,21 +37,22 @@ public class PlayButton extends CButton
     @Override
     public void Update()
     {
-//        if (GetIsClick())
-//        {
-//            //SceneManager.Instance.SetNextState("SampleGame");
-//        }
-
         if(TouchManager.Instance.IsDown())
             SetIsClick(true);
         if(Collision.CheckPointAABB(TouchManager.Instance.GetTouchPos(), this))
         {
             if(GetIsClick())
             {
-                SceneManager.Instance.SetNextState("SampleGame");
                 SetIsClick(false);
+                active = false;
+                playClicked = true;
             }
         }
+    }
+
+    public boolean GetPlayClicked()
+    {
+        return playClicked;
     }
 
     @Override

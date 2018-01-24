@@ -6,22 +6,20 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.view.SurfaceView;
 
-
-public class MenuBackground implements EntityBase
+public class MenuShip implements EntityBase
 {
     private Bitmap bmp = null;
     private boolean active;
 
-    private float xPos, yPos;
+    private Vector2 pos;
+    private Vector2 scale;
     private SurfaceView view = null;
-    Matrix transform = new Matrix();
-
     private boolean isInit = false;
 
+    Matrix transform = new Matrix();
+
     @Override
-    public boolean IsActive() {
-        return active;
-    }
+    public boolean IsActive() { return active; }
 
     @Override
     public void SetIsActive(boolean _active)
@@ -30,13 +28,14 @@ public class MenuBackground implements EntityBase
     }
 
     @Override
-    public boolean GetIsInit() {
+    public boolean GetIsInit()
+    {
         return isInit;
     }
 
     @Override
     public int GetRenderLayer() {
-        return LayerConstants.BACKGROUND_LAYER;
+        return LayerConstants.GAMEOBJECTS_LAYER;
     }
 
     @Override
@@ -49,33 +48,21 @@ public class MenuBackground implements EntityBase
     {
         active = true;
         view = _view;
-        bmp = BitmapFactory.decodeResource(_view.getResources(), R.drawable.menu_background);
-        xPos = 0.5f * _view.getWidth() - 50.f;
-        yPos = 0.5f * _view.getHeight();
+        bmp = BitmapFactory.decodeResource(_view.getResources(), R.drawable.player);
+        pos = new Vector2(500f, 1350f);
         isInit = true;
     }
 
     @Override
-    public void Update()
-    {
+    public void Update() {
+
     }
 
     @Override
     public void Render(Canvas _canvas)
     {
-        transform.setScale(1.f, 1.f);
-        transform.postTranslate(xPos - _canvas.getWidth() * 0.5f, yPos -  _canvas.getHeight() * 0.5f);
+        transform.setScale(1f, 1f);
+        transform.postTranslate(pos.x, pos.y);
         _canvas.drawBitmap(bmp, transform, null);
-    }
-
-    public void SetBitmap(int _resource)
-    {
-        bmp = BitmapFactory.decodeResource(view.getResources(), _resource);
-    }
-
-    public MenuBackground Create()
-    {
-        EntityManager.Instance.AddEntity(this);
-        return this;
     }
 }

@@ -36,8 +36,6 @@ public class Vector2
         return IsLesser(a, b) || IsEqual(a, b);
     }
 
-
-
     Vector2(final Vector2 rhs)
     {
         x = rhs.x;
@@ -180,20 +178,14 @@ public class Vector2
         return new Vector2(rhs.x * scalar, rhs.y * scalar);
     }
 
-//    final boolean IsGreater(float a , float b)
-//    {
-//        return (a > b - EPSILON);
-//    }
-//    final boolean IsLesser(float a ,float b)
-//    {
-//        return (a < b + EPSILON);
-//    }
-//    bool operator==( const Vector3& rhs ) const; //Equality check
-//    bool operator!= ( const Vector3& rhs ) const; //Inequality check
-//    bool operator>=(const Vector3& rhs) const;	// Check if LHS is >= RHS
-//    bool operator>(const Vector3& rhs) const;	// Check if LHS is > RHS
-//    bool operator<=(const Vector3& rhs) const;	// Check if LHS is <= RHS
-//    bool operator<(const Vector3& rhs) const;	// Check if LHS is < RHS
+    final public Vector2 Up()
+    {
+        return new Vector2(0f, 1f);
+    }
 
+    final public Vector2 Right()
+    {
+        return new Vector2(1f, 0f);
+    }
 }
 

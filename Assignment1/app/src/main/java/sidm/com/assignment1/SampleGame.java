@@ -13,7 +13,6 @@ public class SampleGame implements Scene
     // Declaration of Singleton
     public final static SampleGame Instance = new SampleGame();
     private float time = 0.5f;
-    private boolean clicks;
 
 //    PlayButton playButton;
     SampleBackground background;
@@ -38,10 +37,8 @@ public class SampleGame implements Scene
         EntityManager.Instance.Init(_view);
         background = new SampleBackground();
         EntityManager.Instance.AddEntity(background);
-//        playButton = new PlayButton();
-//        EntityManager.Instance.AddEntity(playButton);
 
-        clicks = false;
+        Player.Instance.SetPosition(new Vector2(580f, 1500f));
     }
 
     @Override

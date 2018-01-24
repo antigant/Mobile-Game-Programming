@@ -34,8 +34,13 @@ public class SplashBackground implements EntityBase{
     }
 
     @Override
-    public void SetIsInit(boolean _isInit) {
-        isInit = _isInit;
+    public int GetRenderLayer() {
+        return LayerConstants.BACKGROUND_LAYER;
+    }
+
+    @Override
+    public void SetRenderLayer(int _newLayer) {
+        return;
     }
 
     @Override

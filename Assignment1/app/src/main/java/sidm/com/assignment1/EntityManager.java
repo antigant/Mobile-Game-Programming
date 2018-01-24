@@ -3,6 +3,8 @@ package sidm.com.assignment1;
 import android.graphics.Canvas;
 import android.view.SurfaceView;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 
 public class EntityManager
@@ -88,6 +90,14 @@ public class EntityManager
 
     public void Render(Canvas _canvas)
     {
+        // We will use the new "rendering layer" to sort the render order
+        Collections.sort(entityList, new Comparator<EntityBase>() {
+            @Override
+            public int compare(EntityBase o1, EntityBase o2) {
+                return o1.GetRenderLayer() - o2.GetRenderLayer();
+            }
+        });
+
         // TODO render @ EntityManager
         for(EntityBase currEntity : entityList)
         {

@@ -34,15 +34,21 @@ public class SampleBackground implements EntityBase
     }
 
     @Override
-    public void SetIsInit(boolean _isInit) {
-        isInit = _isInit;
+    public int GetRenderLayer() {
+        return LayerConstants.BACKGROUND_LAYER;
+    }
+
+    @Override
+    public void SetRenderLayer(int _newLayer) {
+        return;
     }
 
     @Override
     public void Init(SurfaceView _view)
     {
         view = _view;
-        bmp = BitmapFactory.decodeResource(_view.getResources(), R.drawable.background2);
+        bmp = BitmapFactory.decodeResource(_view.getResources(), R.drawable.background);
+        xPos = 0.5f * view.getWidth() - 50.f;
 
         isInit = true;
     }
@@ -56,14 +62,8 @@ public class SampleBackground implements EntityBase
     @Override
     public void Render(Canvas _canvas)
     {
-        xPos = 0.5f * view.getWidth() - 50.f;
-//        yPos = 0.5f * view.getHeight();
-//
-//        float xOffset = (float)Math.sin(offset) * bmp.getWidth() * 0.3f;
-//        _canvas.drawBitmap(bmp, xPos - bmp.getWidth() * 0.5f + 50.f, -2230, null);
-
         transform.setScale(1.f, 1.f);
-        transform.postTranslate(xPos - _canvas.getWidth() * 0.5f, -2230.f);
+        transform.postTranslate(xPos - _canvas.getWidth() * 0.5f, -200f);
         _canvas.drawBitmap(bmp, transform, null);
     }
 

@@ -2,6 +2,8 @@ package sidm.com.assignment1;
 
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.view.Surface;
 import android.view.SurfaceView;
 
 public class Player extends GameObject
@@ -10,6 +12,7 @@ public class Player extends GameObject
     private Player() {} // Private constructor to not let other create another instance
     private Health playerHealth;
     private boolean isDead = false;
+    Matrix transform = new Matrix();
 
     // Variables
     private float m_fJumpSpeed, m_fJumpAcceleration, m_fFallSpeed, m_fFallAcceleration;
@@ -81,13 +84,16 @@ public class Player extends GameObject
     @Override
     public void Init(SurfaceView _view)
     {
-        SetBitmap(_view, R.drawable.player);
+        active = true;
+        moveSpeed = 80.f;
+        SetSpritesheet(_view, R.drawable.player_sprite, 2, 2, 5);
         isInit = true;
     }
 
     @Override
     public void Update()
     {
+        spritesheet.Update(Time.deltaTime);
 
         if (TouchManager.Instance.GetSwipeState() == "RIGHT")
         {
@@ -100,9 +106,19 @@ public class Player extends GameObject
     }
 
     @Override
+    public int GetRenderLayer()
+    {
+        return LayerConstants.GAMEOBJECTS_LAYER;
+    }
+
+    @Override
     public void Render(Canvas _canvas)
     {
-        _canvas.drawBitmap(bmp, GetPosition().x - bmp.getWidth() * 0.5f, GetPosition().y - bmp.getHeight() * 0.5f, null);
+//        transform.setScale(1f, 1f);
+//        transform.postTranslate(pos.x, pos.y);
+//        _canvas.drawBitmap(bmp, transform, null);
+
+        spritesheet.Render(_canvas, (int)pos.x, (int)pos.y);
     }
 
     @Override
