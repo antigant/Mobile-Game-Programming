@@ -11,7 +11,7 @@ public class SampleBackground implements EntityBase
     private Bitmap bmp = null;
     private boolean active = true;
 
-    private float xPos, yPos, offset;
+    private Vector2 pos;
     private SurfaceView view = null;
     Matrix transform = new Matrix();
 
@@ -48,7 +48,7 @@ public class SampleBackground implements EntityBase
     {
         view = _view;
         bmp = BitmapFactory.decodeResource(_view.getResources(), R.drawable.background);
-        xPos = 0.5f * view.getWidth() - 50.f;
+        pos.x = 0.5f * view.getWidth() - 50.f;
 
         isInit = true;
     }
@@ -56,15 +56,25 @@ public class SampleBackground implements EntityBase
     @Override
     public void Update()
     {
-        offset += Time.deltaTime * 0.1f;
+
     }
 
     @Override
     public void Render(Canvas _canvas)
     {
         transform.setScale(1.f, 1.f);
-        transform.postTranslate(xPos - _canvas.getWidth() * 0.5f, -200f);
+        transform.postTranslate(pos.x - _canvas.getWidth() * 0.5f, pos.y);
         _canvas.drawBitmap(bmp, transform, null);
+    }
+
+    public void SetPosition(final Vector2 _pos)
+    {
+        pos = _pos;
+    }
+
+    final public Vector2 GetPosition()
+    {
+        return pos;
     }
 
     public SampleBackground Create()

@@ -45,18 +45,6 @@ public class SampleGame implements Scene
     public void Update()
     {
         EntityManager.Instance.Update();
-//        if(TouchManager.Instance.IsDown())
-//            clicks = true;
-//
-//         if(Collision.CheckPointAABB(TouchManager.Instance.GetTouchPos(), playButton))
-//        {
-//            if(clicks)
-//            {
-//                SceneManager.Instance.SetNextState("MainMenu");
-//                clicks = false;
-//            }
-//            //playButton.SetIsClick(true);
-//        }
     }
 
     @Override
