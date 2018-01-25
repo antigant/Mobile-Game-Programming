@@ -6,6 +6,7 @@ import android.view.Surface;
 import android.view.SurfaceView;
 
 import java.util.Random;
+import java.util.Vector;
 
 // Game instance (Put all game variables in here)
 public class SampleGame implements Scene
@@ -17,6 +18,7 @@ public class SampleGame implements Scene
 //    PlayButton playButton;
     SampleBackground background;
     Random ranGen = new Random();
+
 
     // This is to not allow anyone else to create another of this class
     private SampleGame()
