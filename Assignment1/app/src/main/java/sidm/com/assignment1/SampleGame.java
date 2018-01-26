@@ -21,6 +21,9 @@ public class SampleGame implements Scene
     LinkedList<SampleBackground> backgroundList = new LinkedList<>();
     float backgroundSpeed = 50f;
 
+    MovePlayerButton leftButton;
+    MovePlayerButton rightButton;
+
     // This is to not allow anyone else to create another of this class
     private SampleGame()
     {
@@ -47,6 +50,14 @@ public class SampleGame implements Scene
             backgroundList.add(background);
         }
 
+        leftButton = new MovePlayerButton();
+        leftButton.Init(_view);
+        leftButton.SetPosition(new Vector2(300, 1200.f));
+        EntityManager.Instance.AddEntity(leftButton);
+        rightButton = new MovePlayerButton();
+        rightButton.Init(_view);
+        rightButton.SetPosition(new Vector2(800f, 1200.f));
+        EntityManager.Instance.AddEntity(rightButton);
         Player.Instance.SetPosition(new Vector2(580f, 1500f));
     }
 
@@ -54,8 +65,14 @@ public class SampleGame implements Scene
     public void Update()
     {
         EntityManager.Instance.Update();
+        // Update the background to make it loop
         for(int i = 0; i < backgroundList.size(); ++i)
             backgroundList.get(i).SetPosition(new Vector2(backgroundList.get(i).GetPosition().x, backgroundList.get(i).GetPosition().y += backgroundSpeed * Time.deltaTime));
+        // To update the player's position
+        if(leftButton.GetIsClick())
+            leftButton.SetDirection(-1);
+        if(rightButton.GetIsClick())
+            rightButton.SetDirection(1);
     }
 
     @Override

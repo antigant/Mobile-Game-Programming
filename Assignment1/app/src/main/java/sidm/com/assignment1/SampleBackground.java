@@ -88,3 +88,4 @@ public class SampleBackground implements EntityBase
         return this;
     }
 }
+

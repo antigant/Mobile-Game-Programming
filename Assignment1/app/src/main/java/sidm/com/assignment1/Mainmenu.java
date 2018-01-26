@@ -66,7 +66,7 @@ public class Mainmenu implements Scene//extends Activity implements OnClickListe
         if(!a)
         {
             Player.Instance.SetPosition(new Vector2(Player.Instance.GetPosition().x, Player.Instance.GetPosition().y -= Player.Instance.GetMoveSpeed() * Time.deltaTime));
-            if(Player.Instance.GetPosition().y <= -100f)
+            if(Player.Instance.GetPosition().y <= -110f)
                 SceneManager.Instance.SetNextState("SampleGame");
         }
     }

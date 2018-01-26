@@ -19,10 +19,11 @@ public class GameObject implements EntityBase, Collidable
     protected Sprite spritesheet = null;
     // name : game object name; type : game object type (for collision purpose)
     private String name, type;
-    private Vector2 minAABB = new Vector2(0.f, 0.f);
-    private Vector2 maxAABB = new Vector2(0.f, 0.f);
+    protected Vector2 minAABB = new Vector2(0.f, 0.f);
+    protected Vector2 maxAABB = new Vector2(0.f, 0.f);
     protected Vector2 pos = new Vector2(0.f, 0.f);
-    protected Vector2 vel = new Vector2(0.f, 0.f), scale = new Vector2(0.f, 0.f);
+    protected Vector2 vel = new Vector2(0.f, 0.f);
+    protected Vector2 scale = new Vector2(1.f, 1.f);
     protected Vector2 dir = new Vector2(0.f, 0.f);
     protected float moveSpeed;
     protected boolean active;
@@ -128,6 +129,8 @@ public class GameObject implements EntityBase, Collidable
     @Override
     final public float GetRadius()
     {
+        if(spritesheet == null)
+            return 0f;
         return spritesheet.GetHeight() * 0.5f;
     }
 
