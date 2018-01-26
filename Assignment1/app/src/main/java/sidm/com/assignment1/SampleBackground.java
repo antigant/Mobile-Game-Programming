@@ -11,11 +11,14 @@ public class SampleBackground implements EntityBase
     private Bitmap bmp = null;
     private boolean active = true;
 
-    private Vector2 pos;
+
+    private Vector2 pos = new Vector2(0f, 0f);
     private SurfaceView view = null;
     Matrix transform = new Matrix();
 
     private boolean isInit = false;
+
+    public static final float CONSTANT = 1150f;
 
     @Override
     public boolean IsActive() {
@@ -56,7 +59,8 @@ public class SampleBackground implements EntityBase
     @Override
     public void Update()
     {
-
+        if(pos.y >= 1800f)
+            pos.y = -CONSTANT * 2f;
     }
 
     @Override

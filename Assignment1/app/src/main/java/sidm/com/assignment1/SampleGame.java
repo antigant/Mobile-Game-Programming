@@ -5,7 +5,9 @@ import android.text.method.Touch;
 import android.view.Surface;
 import android.view.SurfaceView;
 
+import java.util.LinkedList;
 import java.util.Random;
+import java.util.Vector;
 
 // Game instance (Put all game variables in here)
 public class SampleGame implements Scene
@@ -15,8 +17,9 @@ public class SampleGame implements Scene
     private float time = 0.5f;
 
 //    PlayButton playButton;
-    SampleBackground background;
     Random ranGen = new Random();
+    LinkedList<SampleBackground> backgroundList = new LinkedList<>();
+    float backgroundSpeed = 50f;
 
     // This is to not allow anyone else to create another of this class
     private SampleGame()
@@ -35,8 +38,14 @@ public class SampleGame implements Scene
     public void Init(SurfaceView _view)
     {
         EntityManager.Instance.Init(_view);
-        background = new SampleBackground();
-        EntityManager.Instance.AddEntity(background);
+        for(int i = 0; i < 4; ++i)
+        {
+            SampleBackground background = new SampleBackground();
+            EntityManager.Instance.AddEntity(background);
+
+            background.SetPosition(new Vector2(background.GetPosition().x, -SampleBackground.CONSTANT * i + 500f));
+            backgroundList.add(background);
+        }
 
         Player.Instance.SetPosition(new Vector2(580f, 1500f));
     }
@@ -45,6 +54,8 @@ public class SampleGame implements Scene
     public void Update()
     {
         EntityManager.Instance.Update();
+        for(int i = 0; i < backgroundList.size(); ++i)
+            backgroundList.get(i).SetPosition(new Vector2(backgroundList.get(i).GetPosition().x, backgroundList.get(i).GetPosition().y += backgroundSpeed * Time.deltaTime));
     }
 
     @Override
@@ -58,8 +69,11 @@ public class SampleGame implements Scene
     {
         // Clear the scene before going to the next
         time = 0.0f;
-//        playButton.SetIsActive(false);
-        background.SetIsActive(false);
+        for(int i = 0; i < backgroundList.size(); ++i)
+        {
+            backgroundList.get(i).SetIsActive(false);
+            backgroundList.remove(i);
+        }
 
         // Do save file here
 
