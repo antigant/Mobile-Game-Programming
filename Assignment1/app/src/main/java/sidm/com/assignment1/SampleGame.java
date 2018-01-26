@@ -19,7 +19,7 @@ public class SampleGame implements Scene
 //    PlayButton playButton;
     Random ranGen = new Random();
     LinkedList<SampleBackground> backgroundList = new LinkedList<>();
-    float backgroundSpeed = 50f;
+    float backgroundSpeed = 80f;
 
     MovePlayerButton leftButton;
     MovePlayerButton rightButton;
@@ -52,11 +52,11 @@ public class SampleGame implements Scene
 
         leftButton = new MovePlayerButton();
         leftButton.Init(_view);
-        leftButton.SetPosition(new Vector2(300, 1200.f));
+        leftButton.SetPosition(new Vector2(300, 1500.f));
         EntityManager.Instance.AddEntity(leftButton);
         rightButton = new MovePlayerButton();
         rightButton.Init(_view);
-        rightButton.SetPosition(new Vector2(800f, 1200.f));
+        rightButton.SetPosition(new Vector2(800f, 1500.f));
         EntityManager.Instance.AddEntity(rightButton);
         Player.Instance.SetPosition(new Vector2(580f, 1500f));
     }
@@ -64,6 +64,9 @@ public class SampleGame implements Scene
     @Override
     public void Update()
     {
+        if(GameSystem.Instance.GetIsPaused())
+            return;
+
         EntityManager.Instance.Update();
         // Update the background to make it loop
         for(int i = 0; i < backgroundList.size(); ++i)

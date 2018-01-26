@@ -85,7 +85,7 @@ public class Player extends GameObject
     public void Init(SurfaceView _view)
     {
         active = true;
-        moveSpeed = 80.f;
+        moveSpeed = 100.f;
         SetSpritesheet(_view, R.drawable.player_sprite, 2, 2, 5);
         isInit = true;
     }
@@ -95,14 +95,20 @@ public class Player extends GameObject
     {
         spritesheet.Update(Time.deltaTime);
 
-        if (TouchManager.Instance.GetSwipeState() == "RIGHT")
-        {
+        if(pos.x < 43.5f)
+            pos.x = 43.5f;
 
-        }
-        else if (TouchManager.Instance.GetSwipeState() == "LEFT")
-        {
+        if(pos.x > 1040f)
+            pos.x = 1040f;
 
-        }
+//        if (TouchManager.Instance.GetSwipeState() == "RIGHT")
+//        {
+//
+//        }
+//        else if (TouchManager.Instance.GetSwipeState() == "LEFT")
+//        {
+//
+//        }
     }
 
     @Override
