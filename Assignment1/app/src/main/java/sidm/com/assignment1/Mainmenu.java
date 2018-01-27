@@ -45,6 +45,12 @@ public class Mainmenu implements Scene//extends Activity implements OnClickListe
         // Static ship for show on main menu screen
         ship = new MenuShip();
         EntityManager.Instance.AddEntity(ship);
+
+        if(GameSystem.Instance.GetHasStarted())
+            Player.Instance.Restart(_view);
+
+        // Restart or anything
+        GameSystem.Instance.SetHasStarted(false);
     }
 
     @Override

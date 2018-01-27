@@ -11,7 +11,10 @@ public class EntityManager
 {
     public static final EntityManager Instance = new EntityManager();
     private SurfaceView view = null;
+    // Main list to update it
     protected LinkedList<EntityBase> entityList = new LinkedList<>();
+    // List to add entity after first frame
+    protected LinkedList<EntityBase> additionalList = new LinkedList<>();
     // List to remove entity
     protected LinkedList<EntityBase> removalList = new LinkedList<>();
 
@@ -29,6 +32,9 @@ public class EntityManager
 
     public void Update()
     {
+        // Add entity into entity list
+        AdditionalEntity();
+
         // Update Everything!
         for(EntityBase currEntity : entityList)
         {
@@ -37,7 +43,7 @@ public class EntityManager
 
             currEntity.Update();
 
-            if(currEntity.IsActive() == false)
+            if(!currEntity.IsActive())
             {
                 // We need to remove this!
                 removalList.add(currEntity);
@@ -45,6 +51,7 @@ public class EntityManager
         }
 
         RemoveEntity();
+        AdditionalEntity();
 
         for(int i = 0; i < entityList.size(); ++i)
         {
@@ -61,7 +68,7 @@ public class EntityManager
 
                     if(otherEntity instanceof Collidable)
                     {
-                        Collidable second = (Collidable) otherEntity;
+                        Collidable second = (Collidable) otherEntity; // type casting
                         // We got our 2 collideables! Check collision here!
                         if(Collision.SphereToSphere(first.GetPosition().x, first.GetPosition().y, first.GetRadius(), second.GetPosition().x, second.GetPosition().y, second.GetRadius()))
                         {
@@ -78,14 +85,13 @@ public class EntityManager
                     }
                 }
             }
-            if(currEntity.IsActive() == false)
+            if(!currEntity.IsActive())
             {
                 // We need to remove this!
                 removalList.add(currEntity);
             }
         }
         RemoveEntity();
-
     }
 
     public void Render(Canvas _canvas)
@@ -110,13 +116,19 @@ public class EntityManager
     {
         for (EntityBase currEntity : removalList)
             entityList.remove(currEntity);
-
         removalList.clear();
+    }
+
+    private void AdditionalEntity()
+    {
+        for(EntityBase currEntity : additionalList)
+            entityList.add(currEntity);
+        additionalList.clear();
     }
 
     public void AddEntity(EntityBase _newEntity)
     {
-        entityList.add(_newEntity);
+        additionalList.add(_newEntity);
     }
 }
 

@@ -59,6 +59,8 @@ public class SampleGame implements Scene
         rightButton.SetPosition(new Vector2(800f, 1500.f));
         EntityManager.Instance.AddEntity(rightButton);
         Player.Instance.SetPosition(new Vector2(580f, 1500f));
+
+        GameSystem.Instance.SetHasStarted(true);
     }
 
     @Override
@@ -66,6 +68,8 @@ public class SampleGame implements Scene
     {
         if(GameSystem.Instance.GetIsPaused())
             return;
+        if(Player.Instance.GetIsDead())
+            return; // TODO: For now just return
 
         EntityManager.Instance.Update();
         // Update the background to make it loop
@@ -93,6 +97,11 @@ public class SampleGame implements Scene
         {
             backgroundList.get(i).SetIsActive(false);
             backgroundList.remove(i);
+        }
+
+        if(GameSystem.Instance.GetHasStarted())
+        {
+            Player.Instance.SetIsInit(false);
         }
 
         // Do save file here

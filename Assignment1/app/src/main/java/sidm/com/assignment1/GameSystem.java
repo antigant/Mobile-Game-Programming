@@ -10,6 +10,7 @@ public class GameSystem
     public final static String SHARED_PREF_ID = "GameSaveFile"; // Game Save File ID
 
     private boolean isPaused = false;
+    private boolean hasStarted = false;
 
     // This is our save system (using shared preferences for android
     SharedPreferences sharedPref = null;
@@ -39,11 +40,21 @@ public class GameSystem
 
     }
 
+    // Getters
     final public boolean GetIsPaused()
     {
         return isPaused;
     }
 
+    public int GetIntFromSave(String _key)
+    {
+        // Attempt to get using key, if fail provide default variable(0) based on our input
+        return sharedPref.getInt(_key, 0);
+    }
+
+    final public boolean GetHasStarted() { return hasStarted; }
+
+    // Setters
     public void SetIsPaused(final boolean _isPaused)
     {
         isPaused = _isPaused;
@@ -59,11 +70,7 @@ public class GameSystem
         editor.putInt(_key, _value);
     }
 
-    public int GetIntFromSave(String _key)
-    {
-        // Attempt to get using key, if fail provide default variable(0) based on our input
-        return sharedPref.getInt(_key, 0);
-    }
+    public void SetHasStarted(final boolean _hasStarted) { hasStarted = _hasStarted; }
 
     public void SaveEditBegin()
     {

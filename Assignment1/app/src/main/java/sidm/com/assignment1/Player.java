@@ -10,9 +10,11 @@ public class Player extends GameObject
 {
     public final static Player Instance = new Player();
     private Player() {} // Private constructor to not let other create another instance
-    private Health playerHealth;
+    private Health health = new Health();
     private boolean isDead = false;
     Matrix transform = new Matrix();
+
+    private Weapon weapon = new DefaultWeapon();
 
     // Variables
     private float m_fJumpSpeed, m_fJumpAcceleration, m_fFallSpeed, m_fFallAcceleration;
@@ -68,17 +70,36 @@ public class Player extends GameObject
         m_fFallSpeed = m_fFallSpeed + m_fFallAcceleration * Time.deltaTime;
     }
 
-    public void SetHealth(float amt)
+    public void AddHealth(float amt)
     {
-        playerHealth.AddHealth(amt);
-
-        if(playerHealth.GetHealth() <= 0.f)
+        health.AddHealth(amt);
+        if(health.GetHealth() <= 0.f)
             SetIsDead(true);
     }
 
-    public void SetIsDead(final boolean isDead)
+    // Getter
+    public boolean GetIsDead() { return isDead; }
+    public Weapon GetWeapon() { return weapon; }
+
+    // Setter
+    public void SetIsDead(final boolean _isDead)
     {
-        this.isDead = isDead;
+        isDead = _isDead;
+    }
+    public void SetWeapon(final Weapon _weapon) { weapon = _weapon; }
+
+    // -- //
+    public void Restart(SurfaceView _view)
+    {
+        active = true;
+        moveSpeed = 100.f;
+        SetSpritesheet(_view, R.drawable.player_sprite, 2, 2, 5);
+
+        weapon.Init(_view);
+        health.SetMaxHealth(100f);
+        health.Init();
+
+        isInit = true;
     }
 
     @Override
@@ -87,20 +108,32 @@ public class Player extends GameObject
         active = true;
         moveSpeed = 100.f;
         SetSpritesheet(_view, R.drawable.player_sprite, 2, 2, 5);
+
+        weapon.Init(_view);
+        health.SetMaxHealth(100f);
+        health.Init();
+
         isInit = true;
     }
 
     @Override
     public void Update()
     {
+        if(isDead)
+            return;
+
+        SetAABB(new Vector2(pos.x + bmp.getWidth() * 0.25f, pos.y + bmp.getHeight() * 0.25f), new Vector2(pos.x - bmp.getWidth() * 0.25f, pos.y - bmp.getHeight() * 0.25f));
         spritesheet.Update(Time.deltaTime);
+        weapon.Update();
+
+        if(pos.y > 1500f)
+            pos.y = 1500f;
 
         if(pos.x < 43.5f)
             pos.x = 43.5f;
 
         if(pos.x > 1040f)
             pos.x = 1040f;
-
 //        if (TouchManager.Instance.GetSwipeState() == "RIGHT")
 //        {
 //
@@ -125,20 +158,26 @@ public class Player extends GameObject
 //        _canvas.drawBitmap(bmp, transform, null);
 
         spritesheet.Render(_canvas, (int)pos.x, (int)pos.y);
+        weapon.Render(_canvas);
     }
 
     @Override
     public void OnHit(Collidable collide)
     {
-        if(collide.GetType() == "Platform")
+//        if(collide.GetType() == "Platform")
+//        {
+//            if(m_bFalling)
+//            {
+//                // Standing on the platform
+//                pos.y = collide.GetPosition().y;
+//                m_fFallSpeed = 0.f;
+//                m_bFalling = false;
+//            }
+//
+        if(collide instanceof Bullet)
         {
-            if(m_bFalling)
-            {
-                // Standing on the platform
-                pos.y = collide.GetPosition().y;
-                m_fFallSpeed = 0.f;
-                m_bFalling = false;
-            }
+            Bullet temp = (Bullet) collide; // type casting
+            AddHealth(-temp.GetDamage());
         }
     }
 }

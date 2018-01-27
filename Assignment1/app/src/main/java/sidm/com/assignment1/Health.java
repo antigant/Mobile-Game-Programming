@@ -2,12 +2,22 @@ package sidm.com.assignment1;
 
 public class Health
 {
-    private float health, maxHealth;
+    private float health;
+    private float maxHealth;
 
     public void SetMaxHealth(final float _maxHealth)
     {
         maxHealth = _maxHealth;
-        health = _maxHealth;
+    }
+
+    public void SetHealth(final float _health)
+    {
+        health = _health;
+    }
+
+    public void Init()
+    {
+        health = maxHealth;
     }
 
     public void AddHealth(float amt)
