@@ -43,7 +43,7 @@ public class PowerUpManager
             }
         }
 
-        if(powerupTime > fixPowerUpTime)
+        if(powerupTime >= fixPowerUpTime)
         {
             powerupTime -= fixPowerUpTime;
             Weapon weapon = Player.Instance.GetWeapon();

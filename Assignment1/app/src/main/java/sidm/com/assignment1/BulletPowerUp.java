@@ -62,8 +62,8 @@ public class BulletPowerUp extends PowerUp
         {
             SetIsActive(false);
             Weapon weapon = Player.Instance.GetWeapon();
-            weapon.SetFixBulletSpawnRate(0.5f);
-            PowerUpManager.Instance.SetfixPowerUpTime(10f);
+            weapon.SetFixBulletSpawnRate(1f);
+            PowerUpManager.Instance.SetfixPowerUpTime(20f);
             PowerUpManager.Instance.SetPoweredUp(true);
         }
     }
