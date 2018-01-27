@@ -12,11 +12,11 @@ public class EntityManager
     public static final EntityManager Instance = new EntityManager();
     private SurfaceView view = null;
     // Main list to update it
-    protected LinkedList<EntityBase> entityList = new LinkedList<>();
+    private LinkedList<EntityBase> entityList = new LinkedList<>();
     // List to add entity after first frame
-    protected LinkedList<EntityBase> additionalList = new LinkedList<>();
+    private LinkedList<EntityBase> additionalList = new LinkedList<>();
     // List to remove entity
-    protected LinkedList<EntityBase> removalList = new LinkedList<>();
+    private LinkedList<EntityBase> removalList = new LinkedList<>();
 
 
     private EntityManager()
@@ -75,12 +75,12 @@ public class EntityManager
                             GameObject first1 = (GameObject) first;
                             GameObject second2 = (GameObject) second;
 
-                            if(Collision.CheckAABBCollision(first1, second2))
-                            {
+//                            if(Collision.CheckAABBCollision(first1, second2))
+//                            {
                                 // COLLIDED! We notify the both of them
                                 first.OnHit(second);
                                 second.OnHit(first);
-                            }
+//                            }
                         }
                     }
                 }

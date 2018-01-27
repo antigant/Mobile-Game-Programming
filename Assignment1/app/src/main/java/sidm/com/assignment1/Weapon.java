@@ -39,9 +39,14 @@ public abstract class Weapon
     // Setter
     public void SetLifeTime(final float _lifeTime) { lifeTime = _lifeTime; }
     public void SetMaxTime(final float _MAX_TIME) { MAX_TIME = _MAX_TIME; }
+    public void SetFixBulletSpawnRate(final float _fixBulletSpawnRate) { fixBulletSpawnRate = _fixBulletSpawnRate; }
 
     // Getter
     final public float GetLifeTime() { return lifeTime; }
     final public float GetMaxTime() { return MAX_TIME; }
+    final public float GetFixBulletSpawnRate() { return fixBulletSpawnRate; }
+
+    // -- //
+    public void Reset() { }
 }
 

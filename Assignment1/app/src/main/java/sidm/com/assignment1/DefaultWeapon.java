@@ -54,4 +54,11 @@ public class DefaultWeapon extends Weapon
             _canvas.drawBitmap(bulletList.get(i).bmp, transform, null);
         }
     }
+
+    @Override
+    public void Reset()
+    {
+        fixBulletSpawnRate = 3f;
+        PowerUpManager.Instance.SetPoweredUp(false);
+    }
 }

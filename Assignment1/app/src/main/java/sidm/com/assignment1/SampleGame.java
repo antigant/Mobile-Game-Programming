@@ -60,6 +60,7 @@ public class SampleGame implements Scene
         EntityManager.Instance.AddEntity(rightButton);
         Player.Instance.SetPosition(new Vector2(580f, 1500f));
 
+        PowerUpManager.Instance.SetSurfaceView(_view);
         GameSystem.Instance.SetHasStarted(true);
     }
 
@@ -72,6 +73,7 @@ public class SampleGame implements Scene
             return; // TODO: For now just return
 
         EntityManager.Instance.Update();
+        PowerUpManager.Instance.Update();
         // Update the background to make it loop
         for(int i = 0; i < backgroundList.size(); ++i)
             backgroundList.get(i).SetPosition(new Vector2(backgroundList.get(i).GetPosition().x, backgroundList.get(i).GetPosition().y += backgroundSpeed * Time.deltaTime));

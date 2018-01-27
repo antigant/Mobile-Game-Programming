@@ -72,8 +72,6 @@ public class UpdateThread extends Thread
 
             // Render
             canvas = holder.lockCanvas(null);
-            CanvasManager.CanvasHeight = canvas.getHeight();
-            CanvasManager.CanvasWidth = canvas.getWidth();
             if(canvas != null)
             {
                 // We have canvas, we render! :D
