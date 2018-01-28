@@ -27,6 +27,7 @@ public class BulletPowerUp extends PowerUp
         checkPos.y = pos.y;
 
         moveSpeed = 50f;
+        PowerUpManager.Instance.SetPowerupType("Weapon");
 
         isInit = true;
     }
@@ -37,8 +38,9 @@ public class BulletPowerUp extends PowerUp
         if(pos.y >= 1750f)
             SetIsActive(false);
 
-        SetPosition(new Vector2(pos.x += moveSpeed * Time.deltaTime * dir, pos.y += moveSpeed * Time.deltaTime));
-        SetAABB(new Vector2(pos.x + bmp.getWidth() * 0.5f, pos.y + bmp.getHeight() * 0.5f), new Vector2(pos.x - bmp.getWidth() * 0.5f, pos.y - bmp.getHeight() * 0.5f));
+        pos.Set(pos.x += moveSpeed * Time.deltaTime * dir, pos.y += moveSpeed * Time.deltaTime);
+        maxAABB.Set(pos.x + bmp.getWidth() * 0.5f, pos.y + bmp.getHeight() * 0.5f);
+        minAABB.Set(pos.x - bmp.getWidth() * 0.5f, pos.y - bmp.getHeight() * 0.5f);
         float result = pos.x - checkPos.x;
         if( result >= 300f || result <= -300)
         {

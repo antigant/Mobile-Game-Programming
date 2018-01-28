@@ -27,6 +27,7 @@ public class UpdateThread extends Thread
         // TODO: REMEMBER TO FIRST INIT THE SCENE (FOR MC)
         SceneManager.Instance.SetGameView(_view);
         GameSystem.Instance.Init(_view);
+        AudioManager.Instance.Init(_view);
     }
 
     public boolean IsRunning()

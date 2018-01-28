@@ -17,6 +17,7 @@ public class PowerUpManager
     private float powerupTime = 0;
     private float fixPowerUpTime;
     private boolean poweredUp = false;
+    private String powerupType = "no powerup";
 
     // Private constructor :- Disable anyone from creating another PowerUpGenerator
     private PowerUpManager() {}
@@ -25,6 +26,7 @@ public class PowerUpManager
     public void SetSurfaceView(SurfaceView _view) { view = _view; }
     public void SetfixPowerUpTime(final float _fixPowerUpTime) { fixPowerUpTime = _fixPowerUpTime; }
     public void SetPoweredUp(final boolean _poweredUp) { poweredUp = _poweredUp; }
+    public void SetPowerupType(final String _powerupType) { powerupType = _powerupType; }
 
     public void Update()
     {
@@ -46,8 +48,12 @@ public class PowerUpManager
         if(powerupTime >= fixPowerUpTime)
         {
             powerupTime -= fixPowerUpTime;
-            Weapon weapon = Player.Instance.GetWeapon();
-            weapon.Reset();
+            if(powerupType == "Weapon")
+            {
+                Weapon weapon = Player.Instance.GetWeapon();
+                weapon.Reset();
+            }
+            powerupType = "no power up";
         }
     }
 }

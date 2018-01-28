@@ -107,7 +107,9 @@ public class EntityManager
         // TODO render @ EntityManager
         for(EntityBase currEntity : entityList)
         {
-            if(currEntity.GetIsInit())
+            if(!currEntity.IsRender()) // Check if the current entity needs to be rendered
+                continue;
+            if(currEntity.GetIsInit()) // Check if the entity has been initialised
                 currEntity.Render(_canvas);
         }
     }

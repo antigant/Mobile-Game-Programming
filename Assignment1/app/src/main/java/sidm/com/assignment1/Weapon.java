@@ -31,11 +31,6 @@ public abstract class Weapon
             return;
     }
 
-    public void Render(Canvas _canvas)
-    {
-
-    }
-
     // Setter
     public void SetLifeTime(final float _lifeTime) { lifeTime = _lifeTime; }
     public void SetMaxTime(final float _MAX_TIME) { MAX_TIME = _MAX_TIME; }

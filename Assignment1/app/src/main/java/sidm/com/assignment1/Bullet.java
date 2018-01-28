@@ -45,8 +45,10 @@ public class Bullet extends GameObject
             return;
         }
 
+        maxAABB.Set(pos.x + bmp.getWidth() * 0.5f, pos.y + bmp.getHeight() * 0.5f);
+        minAABB.Set(pos.x - bmp.getWidth() * 0.5f, pos.y - bmp.getHeight() * 0.5f);
         // Update the bullet position
-        SetPosition(new Vector2(pos.x, pos.y -= moveSpeed * Time.deltaTime));
+        pos.Set(pos.x, pos.y -= moveSpeed * Time.deltaTime);
     }
 
     @Override

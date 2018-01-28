@@ -15,6 +15,7 @@ public class MenuShip implements EntityBase
     private Vector2 scale;
     private SurfaceView view = null;
     private boolean isInit = false;
+    private boolean isRender = true;
 
     Matrix transform = new Matrix();
 
@@ -25,6 +26,16 @@ public class MenuShip implements EntityBase
     public void SetIsActive(boolean _active)
     {
         active = _active;
+    }
+
+    @Override
+    public boolean IsRender() {
+        return isRender;
+    }
+
+    @Override
+    public void SetIsRender(boolean _isRender) {
+        isRender = _isRender;
     }
 
     @Override

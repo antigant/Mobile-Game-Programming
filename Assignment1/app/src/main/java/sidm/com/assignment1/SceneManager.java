@@ -34,6 +34,7 @@ public class SceneManager
         {
             m_currScene = m_nextScene = newScene;
             m_currScene.Init(view);
+            EntityManager.Instance.Update();
         }
         m_sceneMap.put(sceneType, newScene);
     }

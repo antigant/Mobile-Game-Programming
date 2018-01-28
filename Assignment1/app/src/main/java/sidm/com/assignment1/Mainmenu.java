@@ -1,6 +1,7 @@
 package sidm.com.assignment1;
 
 import android.graphics.Canvas;
+import android.provider.MediaStore;
 import android.text.method.Touch;
 import android.view.Menu;
 import android.view.SurfaceView;
@@ -49,6 +50,8 @@ public class Mainmenu implements Scene//extends Activity implements OnClickListe
         if(GameSystem.Instance.GetHasStarted())
             Player.Instance.Restart(_view);
 
+        AudioManager.Instance.PlayBackgroundAudio(R.raw.henesys);
+
         // Restart or anything
         GameSystem.Instance.SetHasStarted(false);
     }
@@ -96,6 +99,8 @@ public class Mainmenu implements Scene//extends Activity implements OnClickListe
         // Clear the scene before going to the next
         playButton.SetIsActive(false);
         backGround.SetIsActive(false);
+
+        AudioManager.Instance.StopAudio(R.raw.henesys);
     }
 
     @Override

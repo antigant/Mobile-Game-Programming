@@ -1,6 +1,9 @@
 package sidm.com.assignment1;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.text.method.Touch;
 import android.view.Surface;
 import android.view.SurfaceView;
@@ -23,6 +26,9 @@ public class SampleGame implements Scene
 
     MovePlayerButton leftButton;
     MovePlayerButton rightButton;
+
+    private Paint paint;
+    private Typeface myFont;
 
     // This is to not allow anyone else to create another of this class
     private SampleGame()
@@ -50,6 +56,13 @@ public class SampleGame implements Scene
             backgroundList.add(background);
         }
 
+        myFont = Typeface.createFromAsset(_view.getContext().getAssets(), "fonts/ka1.ttf");
+
+        paint = new Paint();
+        paint.setTypeface(myFont);
+        paint.setColor(Color.rgb(100f, 100f, 100f));
+        paint.setTextSize(70f);
+
         leftButton = new MovePlayerButton();
         leftButton.Init(_view);
         leftButton.SetPosition(new Vector2(300, 1500.f));
@@ -60,8 +73,10 @@ public class SampleGame implements Scene
         EntityManager.Instance.AddEntity(rightButton);
         Player.Instance.SetPosition(new Vector2(580f, 1500f));
 
-        PowerUpManager.Instance.SetSurfaceView(_view);
         GameSystem.Instance.SetHasStarted(true);
+
+        // Sound
+        AudioManager.Instance.PlayBackgroundAudio(R.raw.omegasector);
     }
 
     @Override
@@ -74,6 +89,9 @@ public class SampleGame implements Scene
 
         EntityManager.Instance.Update();
         PowerUpManager.Instance.Update();
+        GameSystem.Instance.Update();
+        EnemyManager.Instance.Update();
+
         // Update the background to make it loop
         for(int i = 0; i < backgroundList.size(); ++i)
             backgroundList.get(i).SetPosition(new Vector2(backgroundList.get(i).GetPosition().x, backgroundList.get(i).GetPosition().y += backgroundSpeed * Time.deltaTime));
@@ -88,6 +106,9 @@ public class SampleGame implements Scene
     public void Render(Canvas _canvas)
     {
         EntityManager.Instance.Render(_canvas);
+
+        String scoreText = String.format("Score: %f", Player.Instance.GetScore());
+        _canvas.drawText(scoreText, 10f, 100f, paint);
     }
 
     @Override
@@ -105,6 +126,8 @@ public class SampleGame implements Scene
         {
             Player.Instance.SetIsInit(false);
         }
+
+        AudioManager.Instance.StopAudio(R.raw.omegasector);
 
         // Do save file here
 

@@ -29,6 +29,7 @@ public class GameObject implements EntityBase, Collidable
     protected boolean active;
     protected int renderLayer = 0;
     protected boolean isInit = false;
+    protected boolean isRender = true;
 
     // If don't init the bitmap, will have no image
     public void SetBitmap(SurfaceView _view, int resource)
@@ -62,6 +63,13 @@ public class GameObject implements EntityBase, Collidable
         pos.Assignment(_pos);
     }
 
+    // Additional Setter
+    public void SetPosition(final float a, final float b)
+    {
+        pos.x = a;
+        pos.y = b;
+    }
+
     @Override
     public Vector2 GetPosition()
     {
@@ -81,6 +89,12 @@ public class GameObject implements EntityBase, Collidable
     public void SetScale(final Vector2 _scale)
     {
         scale.Assignment(_scale);
+    }
+
+    public void SetScale(final float a, final float b)
+    {
+        scale.x = a;
+        scale.y = b;
     }
 
     final public Vector2 GetScale()
@@ -165,6 +179,18 @@ public class GameObject implements EntityBase, Collidable
     public void SetIsActive(final boolean _active)
     {
         active = _active;
+    }
+
+    @Override
+    public boolean IsRender()
+    {
+        return isRender;
+    }
+
+    @Override
+    public void SetIsRender(boolean _isRender)
+    {
+        isRender = _isRender;
     }
 
     @Override

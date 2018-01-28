@@ -17,6 +17,7 @@ public class MenuBackground implements EntityBase
     Matrix transform = new Matrix();
 
     private boolean isInit = false;
+    private boolean isRender = true;
 
     @Override
     public boolean IsActive() {
@@ -27,6 +28,16 @@ public class MenuBackground implements EntityBase
     public void SetIsActive(boolean _active)
     {
         active = _active;
+    }
+
+    @Override
+    public boolean IsRender() {
+        return isRender;
+    }
+
+    @Override
+    public void SetIsRender(boolean _isRender) {
+        isRender = _isRender;
     }
 
     @Override

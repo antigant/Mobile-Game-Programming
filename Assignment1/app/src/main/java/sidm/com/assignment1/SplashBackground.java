@@ -6,8 +6,8 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.view.SurfaceView;
 
-public class SplashBackground implements EntityBase{
-
+public class SplashBackground implements EntityBase
+{
     private Bitmap bmp = null;
     private boolean active = true;
 
@@ -16,6 +16,7 @@ public class SplashBackground implements EntityBase{
     Matrix transform = new Matrix();
 
     private boolean isInit = false;
+    private boolean isRender = true;
 
     @Override
     public boolean IsActive() {
@@ -26,6 +27,16 @@ public class SplashBackground implements EntityBase{
     public void SetIsActive(boolean _active)
     {
         active = _active;
+    }
+
+    @Override
+    public boolean IsRender() {
+        return isRender;
+    }
+
+    @Override
+    public void SetIsRender(boolean _isRender) {
+        isRender = _isRender;
     }
 
     @Override
@@ -48,7 +59,6 @@ public class SplashBackground implements EntityBase{
     {
         view = _view;
         bmp = BitmapFactory.decodeResource(_view.getResources(), R.drawable.splash_screen);
-
         isInit = true;
     }
 

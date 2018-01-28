@@ -13,62 +13,9 @@ public class Player extends GameObject
     private Health health = new Health();
     private boolean isDead = false;
     Matrix transform = new Matrix();
+    private float score = 0f;
 
     private Weapon weapon = new DefaultWeapon();
-
-    // Variables
-    private float m_fJumpSpeed, m_fJumpAcceleration, m_fFallSpeed, m_fFallAcceleration;
-    private boolean m_bJump, m_bFalling;
-
-    public void SetJumpSpeed(final float m_fJumpSpeed)
-    {
-        this.m_fJumpSpeed = m_fJumpSpeed;
-    }
-
-    public void SetJumpAcceleration(final float m_fJumpAcceleration)
-    {
-        this.m_fJumpAcceleration = m_fJumpAcceleration;
-    }
-
-    public void SetFallSpeed(final float m_fFallSpeed)
-    {
-        this.m_fFallSpeed = m_fFallSpeed;
-    }
-
-    public void SetFallAcceleration(final float m_fFallAcceleration)
-    {
-        this.m_fFallAcceleration = m_fFallAcceleration;
-    }
-
-    public void SetToJump(boolean isOnJumpUpwards)
-    {
-        if(isOnJumpUpwards)
-        {
-            m_bJump = true;
-            m_bFalling = false;
-            m_fFallSpeed = 10.0f;
-        }
-    }
-
-    private void SetFreeFall(boolean isOnFreeFall)
-    {
-        if(isOnFreeFall)
-        {
-            m_bJump = false;
-            m_bFalling = true;
-            m_fJumpSpeed = 40.0f;
-        }
-    }
-
-    private void UpdateFreeFall()
-    {
-        if (!m_bFalling)
-            return;
-
-        // Update position and target y value
-        pos.y += (float)(m_fFallSpeed * Time.deltaTime + 0.5f * m_fJumpAcceleration * Time.deltaTime * Time.deltaTime);
-        m_fFallSpeed = m_fFallSpeed + m_fFallAcceleration * Time.deltaTime;
-    }
 
     public void AddHealth(float amt)
     {
@@ -78,8 +25,9 @@ public class Player extends GameObject
     }
 
     // Getter
-    public boolean GetIsDead() { return isDead; }
-    public Weapon GetWeapon() { return weapon; }
+    final public boolean GetIsDead() { return isDead; }
+    final public Weapon GetWeapon() { return weapon; }
+    final public float GetScore() { return score; }
 
     // Setter
     public void SetIsDead(final boolean _isDead)
@@ -87,6 +35,7 @@ public class Player extends GameObject
         isDead = _isDead;
     }
     public void SetWeapon(final Weapon _weapon) { weapon = _weapon; }
+    public void SetScore(final float _score) { score = _score; }
 
     // -- //
     public void Restart(SurfaceView _view)
@@ -122,7 +71,8 @@ public class Player extends GameObject
         if(isDead)
             return;
 
-        SetAABB(new Vector2(pos.x + bmp.getWidth() * 0.25f, pos.y + bmp.getHeight() * 0.25f), new Vector2(pos.x - bmp.getWidth() * 0.25f, pos.y - bmp.getHeight() * 0.25f));
+        maxAABB.Set(pos.x + bmp.getWidth() * 0.25f, pos.y + bmp.getHeight() * 0.25f);
+        minAABB.Set(pos.x - bmp.getWidth() * 0.25f, pos.y - bmp.getHeight() * 0.25f);
         spritesheet.Update(Time.deltaTime);
         weapon.Update();
 
@@ -158,7 +108,6 @@ public class Player extends GameObject
 //        _canvas.drawBitmap(bmp, transform, null);
 
         spritesheet.Render(_canvas, (int)pos.x, (int)pos.y);
-        weapon.Render(_canvas);
     }
 
     @Override
@@ -174,10 +123,16 @@ public class Player extends GameObject
 //                m_bFalling = false;
 //            }
 //
-        if(collide instanceof Bullet)
+//        if(collide instanceof Bullet)
+//        {
+//            Bullet bullet = (Bullet) collide; // type casting
+//            AddHealth(-bullet.GetDamage());
+//        }
+        if(collide instanceof Enemy)
         {
-            Bullet temp = (Bullet) collide; // type casting
-            AddHealth(-temp.GetDamage());
+            Enemy enemy = (Enemy) collide;
+            AddHealth(-enemy.GetDamage());
+            enemy.SetIsActive(false);
         }
     }
 }

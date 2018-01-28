@@ -5,8 +5,13 @@ import android.view.SurfaceView;
 
 public interface EntityBase
 {
+    // Decides if it still exist in the game world
     boolean IsActive();
     void SetIsActive(boolean _active);
+
+    // Decides if it render on screen
+    boolean IsRender();
+    void SetIsRender(boolean _isRender);
 
     boolean GetIsInit();
     int GetRenderLayer();

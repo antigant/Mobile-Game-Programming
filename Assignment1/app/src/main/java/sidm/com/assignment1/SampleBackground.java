@@ -17,6 +17,7 @@ public class SampleBackground implements EntityBase
     Matrix transform = new Matrix();
 
     private boolean isInit = false;
+    private boolean isRender = true;
 
     public static final float CONSTANT = 1150f;
 
@@ -29,6 +30,16 @@ public class SampleBackground implements EntityBase
     public void SetIsActive(boolean _active)
     {
         active = _active;
+    }
+
+    @Override
+    public boolean IsRender() {
+        return isRender;
+    }
+
+    @Override
+    public void SetIsRender(boolean _isRender) {
+        isRender = _isRender;
     }
 
     @Override

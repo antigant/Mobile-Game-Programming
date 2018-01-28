@@ -8,7 +8,6 @@ import java.util.LinkedList;
 
 public class DefaultWeapon extends Weapon
 {
-    LinkedList<Bullet> bulletList = new LinkedList<>();
     Matrix transform = new Matrix();
 
     public void Init(SurfaceView _view)
@@ -34,24 +33,7 @@ public class DefaultWeapon extends Weapon
             // Start spawning bullets and add it into the list
             Bullet bullet = new Bullet();
             bullet.Init(view);
-            bulletList.add(bullet);
-        }
-
-        for(int i = 0; i < bulletList.size(); ++i)
-        {
-            bulletList.get(i).Update();
-            if(!bulletList.get(i).IsActive())
-                bulletList.remove(i);
-        }
-    }
-
-    public void Render(Canvas _canvas)
-    {
-        for(int i = 0; i < bulletList.size(); ++i)
-        {
-            transform.setScale(bulletList.get(i).GetScale().x, bulletList.get(i).GetScale().y);
-            transform.postTranslate(bulletList.get(i).GetPosition().x, bulletList.get(i).GetPosition().y);
-            _canvas.drawBitmap(bulletList.get(i).bmp, transform, null);
+            EntityManager.Instance.AddEntity(bullet);
         }
     }
 
