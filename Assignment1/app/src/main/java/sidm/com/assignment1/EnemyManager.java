@@ -22,7 +22,7 @@ public class EnemyManager
 
     private int maxEnemies = 0;
     private int enemies = 0;
-    private final int capEnemies = 5;
+    private final int capEnemies = 15;
 
     private float time = 0;
     private final float fixTime = 10f;

@@ -83,8 +83,9 @@ public class SampleGame implements Scene
         // Sound
         AudioManager.Instance.PlayBackgroundAudio(R.raw.omegasector);
 
-        // Pause page
+        // Pause page && Restart page
         PausePage.Instance.Init();
+        RestartPage.Instance.Init();
 
         // Score
         highscore = GameSystem.Instance.GetIntFromSave("highscore");
@@ -174,3 +175,4 @@ public class SampleGame implements Scene
 
     }
 }
+
