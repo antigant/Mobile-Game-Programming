@@ -58,6 +58,7 @@ public class GameSystem
 
         PowerUpManager.Instance.SetSurfaceView(_view);
         EnemyManager.Instance.SetSurfaceView(_view);
+        PausePage.Instance.SetSurfaceView(_view);
     }
 
     public void Render(Canvas _canvas)

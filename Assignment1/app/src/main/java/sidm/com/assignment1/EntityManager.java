@@ -41,7 +41,9 @@ public class EntityManager
             if(!currEntity.GetIsInit())
                 currEntity.Init(view);
 
-            currEntity.Update();
+            // If it's rendering then update
+            if(currEntity.IsRender())
+                currEntity.Update();
 
             if(!currEntity.IsActive())
             {
@@ -131,6 +133,13 @@ public class EntityManager
     public void AddEntity(EntityBase _newEntity)
     {
         additionalList.add(_newEntity);
+    }
+
+    public void ClearEntityManager()
+    {
+        entityList.clear();
+        removalList.clear();
+        additionalList.clear();
     }
 }
 

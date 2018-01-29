@@ -97,9 +97,10 @@ public class Mainmenu implements Scene//extends Activity implements OnClickListe
     public void Exit()
     {
         // Clear the scene before going to the next
-        playButton.SetIsActive(false);
-        backGround.SetIsActive(false);
+//        playButton.SetIsActive(false);
+//        backGround.SetIsActive(false);
 
+        EntityManager.Instance.ClearEntityManager();
         AudioManager.Instance.StopAudio(R.raw.henesys);
     }
 

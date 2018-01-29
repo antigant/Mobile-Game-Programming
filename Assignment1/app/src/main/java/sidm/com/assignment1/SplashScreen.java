@@ -51,7 +51,9 @@ public class SplashScreen implements Scene
     public void Exit()
     {
         // Clear the scene before going to the next
-        backGround.SetIsActive(false);
+//        backGround.SetIsActive(false);
+
+        EntityManager.Instance.ClearEntityManager();
     }
 
     @Override

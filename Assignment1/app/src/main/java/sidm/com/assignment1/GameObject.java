@@ -30,6 +30,7 @@ public class GameObject implements EntityBase, Collidable
     protected int renderLayer = 0;
     protected boolean isInit = false;
     protected boolean isRender = true;
+    protected float radius = 0f;
 
     // If don't init the bitmap, will have no image
     public void SetBitmap(SurfaceView _view, int resource)
@@ -143,9 +144,16 @@ public class GameObject implements EntityBase, Collidable
     @Override
     final public float GetRadius()
     {
-        if(spritesheet == null)
-            return 0f;
-        return spritesheet.GetHeight() * 0.5f;
+//        if(spritesheet == null)
+//            return 0f;
+//        return spritesheet.GetHeight() * 0.5f;
+        return radius;
+    }
+
+    @Override
+    public void SetRadius(float _radius)
+    {
+        radius = _radius;
     }
 
     @Override
@@ -157,6 +165,14 @@ public class GameObject implements EntityBase, Collidable
     {
         maxAABB = _maxAABB;
         minAABB = _minAABB;
+    }
+
+    public void SetAABB(float a1, float b1, float a2, float b2)
+    {
+        maxAABB.x = a1;
+        maxAABB.y = b1;
+        minAABB.x = a2;
+        minAABB.y = b2;
     }
 
     @Override

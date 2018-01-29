@@ -6,7 +6,7 @@ import android.view.SurfaceView;
 
 public class Bullet extends GameObject
 {
-    private float dmg; // damage
+    private int dmg; // damage
     private float lifeTime;
 
     Matrix transform = new Matrix();
@@ -15,23 +15,26 @@ public class Bullet extends GameObject
     private static float BULLET_YPOS = 200f;
 
     // Setter
-    public void SetDamage(final float _dmg) { dmg = _dmg; }
+    public void SetDamage(final int _dmg) { dmg = _dmg; }
     public void SetLifeTime(final float _lifeTime) { lifeTime = _lifeTime; }
 
     // Getter
-    final public float GetDamage() { return dmg; }
+    final public int GetDamage() { return dmg; }
     final public float GetLifeTime() { return lifeTime; }
 
     @Override
     public void Init(SurfaceView _view)
     {
         active = true;
-        dmg = 10f;
+        dmg = 10;
         lifeTime = 0f;
         SetBitmap(_view, R.drawable.bullet );
         moveSpeed = 200f;
         pos.x = Player.Instance.GetPosition().x;
         pos.y = Player.Instance.GetPosition().y - BULLET_YPOS;
+
+        SetRadius(bmp.getHeight());
+
         isInit = true;
     }
 

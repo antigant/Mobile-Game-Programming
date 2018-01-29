@@ -28,6 +28,7 @@ public class BulletPowerUp extends PowerUp
 
         moveSpeed = 50f;
         PowerUpManager.Instance.SetPowerupType("Weapon");
+        SetRadius(bmp.getHeight() * 0.5f);
 
         isInit = true;
     }

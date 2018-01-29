@@ -1,5 +1,6 @@
 package sidm.com.assignment1;
 
+import android.content.Entity;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -29,6 +30,8 @@ public class SampleGame implements Scene
 
     private Paint paint;
     private Typeface myFont;
+
+    int highscore;
 
     // This is to not allow anyone else to create another of this class
     private SampleGame()
@@ -61,7 +64,7 @@ public class SampleGame implements Scene
         paint = new Paint();
         paint.setTypeface(myFont);
         paint.setColor(Color.rgb(100f, 100f, 100f));
-        paint.setTextSize(70f);
+        paint.setTextSize(50f);
 
         leftButton = new MovePlayerButton();
         leftButton.Init(_view);
@@ -71,19 +74,30 @@ public class SampleGame implements Scene
         rightButton.Init(_view);
         rightButton.SetPosition(new Vector2(800f, 1500.f));
         EntityManager.Instance.AddEntity(rightButton);
+
         Player.Instance.SetPosition(new Vector2(580f, 1500f));
+        EntityManager.Instance.AddEntity(Player.Instance);
 
         GameSystem.Instance.SetHasStarted(true);
 
         // Sound
         AudioManager.Instance.PlayBackgroundAudio(R.raw.omegasector);
+
+        // Pause page
+        PausePage.Instance.Init();
+
+        // Score
+        highscore = GameSystem.Instance.GetIntFromSave("highscore");
     }
 
     @Override
     public void Update()
     {
         if(GameSystem.Instance.GetIsPaused())
+        {
+            PausePage.Instance.Update();
             return;
+        }
         if(Player.Instance.GetIsDead())
             return; // TODO: For now just return
 
@@ -107,8 +121,12 @@ public class SampleGame implements Scene
     {
         EntityManager.Instance.Render(_canvas);
 
-        String scoreText = String.format("Score: %f", Player.Instance.GetScore());
-        _canvas.drawText(scoreText, 10f, 100f, paint);
+        String hp = String.format("HP: %d", Player.Instance.GetHealth());
+        _canvas.drawText(hp, 10f, 100f, paint);
+        String scoreText = String.format("Score: %d", Player.Instance.GetScore());
+        _canvas.drawText(scoreText, 10f, 200f, paint);
+        String highscoreText = String.format("Highscore: %d", highscore);
+        _canvas.drawText(highscoreText, 10f, 300f, paint);
     }
 
     @Override
@@ -122,14 +140,21 @@ public class SampleGame implements Scene
             backgroundList.remove(i);
         }
 
-        if(GameSystem.Instance.GetHasStarted())
-        {
-            Player.Instance.SetIsInit(false);
-        }
+        Player.Instance.Reset();
 
         AudioManager.Instance.StopAudio(R.raw.omegasector);
 
+//        leftButton.SetIsActive(false);
+//        rightButton.SetIsActive(false);
+
+        EntityManager.Instance.ClearEntityManager();
+        GameSystem.Instance.SetHasStarted(false);
+
         // Do save file here
+        GameSystem.Instance.SaveEditBegin(); // Start the edit
+        if(Player.Instance.GetScore() >= highscore)
+            GameSystem.Instance.SetIntInSave("highscore", Player.Instance.GetScore());
+        GameSystem.Instance.SaveEditEnd();
 
         // Possible solution 1:
         // Clean up all our entities

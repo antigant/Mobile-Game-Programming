@@ -2,15 +2,15 @@ package sidm.com.assignment1;
 
 public class Health
 {
-    private float health;
-    private float maxHealth;
+    private int health;
+    private int maxHealth;
 
-    public void SetMaxHealth(final float _maxHealth)
+    public void SetMaxHealth(final int _maxHealth)
     {
         maxHealth = _maxHealth;
     }
 
-    public void SetHealth(final float _health)
+    public void SetHealth(final int _health)
     {
         health = _health;
     }
@@ -20,12 +20,14 @@ public class Health
         health = maxHealth;
     }
 
-    public void AddHealth(float amt)
+    public void AddHealth(int amt)
     {
         health += amt;
+        if(health >= maxHealth)
+            health = maxHealth;
     }
 
-    public final float GetHealth()
+    public final int GetHealth()
     {
         return health;
     }

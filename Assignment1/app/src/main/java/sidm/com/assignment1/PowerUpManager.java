@@ -9,7 +9,7 @@ public class PowerUpManager
     public final static PowerUpManager Instance = new PowerUpManager();
 
     private float time = 0;
-    private float fixTime = 20f; // Time to spawn a power up
+    private float fixTime = 60f; // Time to spawn a power up
     Random rand = new Random(); // rand.nextInt(40) returns random number from 0 - 39
     private int randNumber = 0;
     SurfaceView view = null;
@@ -48,12 +48,17 @@ public class PowerUpManager
         if(powerupTime >= fixPowerUpTime)
         {
             powerupTime -= fixPowerUpTime;
-            if(powerupType == "Weapon")
-            {
-                Weapon weapon = Player.Instance.GetWeapon();
-                weapon.Reset();
-            }
-            powerupType = "no power up";
+            Reset();
         }
+    }
+
+    private void Reset()
+    {
+        if(powerupType == "Weapon")
+        {
+            Weapon weapon = Player.Instance.GetWeapon();
+            weapon.Reset();
+        }
+        powerupType = "no power up";
     }
 }

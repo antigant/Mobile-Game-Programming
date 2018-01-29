@@ -24,8 +24,8 @@ public class PlayButton extends CButton
         SetType("button");
         SetIsActive(true);
         SetBitmap(_view,R.drawable.play_button );
-        SetPosition(new Vector2(550.f, 1000.f));
-        SetAABB(new Vector2(pos.x + bmp.getWidth() * 0.5f, pos.y + bmp.getHeight() * 0.5f), new Vector2(pos.x - bmp.getWidth() * 0.5f, pos.y - bmp.getHeight() * 0.5f));
+        SetPosition(550.f, 1000.f);
+        SetAABB(pos.x + bmp.getWidth() * 0.5f, pos.y + bmp.getHeight() * 0.5f, pos.x - bmp.getWidth() * 0.5f, pos.y - bmp.getHeight() * 0.5f);
 
         playClicked = false;
         isInit = true;

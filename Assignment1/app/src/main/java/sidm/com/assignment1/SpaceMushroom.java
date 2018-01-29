@@ -17,14 +17,16 @@ public class SpaceMushroom extends Enemy
         active = true;
         SetBitmap(_view, R.drawable.space_mushroom );
         moveSpeed = 85f;
-        health.SetMaxHealth(10f);
+        health.SetMaxHealth(10);
         health.Init();
 
         pos.x = rand.nextInt(600) + 100f;
         pos.y = -10f;
 
-        SetScore(5f);
-        SetDamage(2f);
+        SetScore(1);
+        SetDamage(5);
+
+        SetRadius(bmp.getHeight() * 0.5f);
 
         isInit = true;
     }
@@ -35,7 +37,7 @@ public class SpaceMushroom extends Enemy
         if(health.GetHealth() <= 0f)
         {
             SetIsActive(false); // dead
-            Player.Instance.SetScore(GetScore());
+            Player.Instance.AddScore(GetScore());
             return;
         }
 
@@ -59,6 +61,7 @@ public class SpaceMushroom extends Enemy
         {
             Bullet bullet = (Bullet) collide;
             AddHealth(-bullet.GetDamage());
+            bullet.SetIsActive(false);
         }
     }
 }
