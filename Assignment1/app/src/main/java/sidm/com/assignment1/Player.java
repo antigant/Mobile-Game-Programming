@@ -34,6 +34,8 @@ public class Player extends GameObject
     public void SetIsDead(final boolean _isDead)
     {
         isDead = _isDead;
+        if(isDead)
+            RestartPage.Instance.SpawnButtons();
     }
     public void SetWeapon(final Weapon _weapon) { weapon = _weapon; }
     public void SetScore(final int _score) { score = _score; }
@@ -45,12 +47,12 @@ public class Player extends GameObject
     {
         active = true;
         moveSpeed = 100.f;
-        SetSpritesheet(_view, R.drawable.player_sprite, 2, 2, 5);
 
         weapon.Init(_view);
         health.SetMaxHealth(100);
         health.Init();
 
+        SetIsDead(false);
         isInit = true;
     }
 

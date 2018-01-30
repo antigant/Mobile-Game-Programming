@@ -59,5 +59,12 @@ public class PausePage
         GameSystem.Instance.SetIsPaused(false);
         pauseButton.SetIsRender(true);
     }
+
+    public void Disable()
+    {
+        pauseButton.SetIsRender(false);
+        resumeButton.SetIsRender(false);
+        menuButton.SetIsRender(false);
+    }
 }
 

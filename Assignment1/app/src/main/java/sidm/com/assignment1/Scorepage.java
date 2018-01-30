@@ -35,6 +35,8 @@ import java.util.List;
 public class Scorepage extends Activity implements OnClickListener
 {
     private Button btn_back;
+
+    // Facebook UI
     private Button btn_fbLogin;
     private Button btn_sharescore; // Define in xml
 
@@ -56,9 +58,14 @@ public class Scorepage extends Activity implements OnClickListener
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         // Init for FB content use
+        FacebookSdk.setApplicationId(getString(R.string.app_id));
         FacebookSdk.sdkInitialize(this.getApplicationContext());
         setContentView(R.layout.scorepage);
 
+        // Get highscore
+        highscore = GameSystem.Instance.GetIntFromSave("highscore");
+
+        // Define for back button
         btn_back = (Button)findViewById(R.id.btn_back);
         btn_back.setOnClickListener(this);
 
@@ -74,19 +81,21 @@ public class Scorepage extends Activity implements OnClickListener
         profilePicture = (ProfilePictureView)findViewById(R.id.picture);
         callbackManager = CallbackManager.Factory.create();
 
-        // Get highscore
-        highscore = GameSystem.Instance.GetIntFromSave("Score");
 
-        AccessTokenTracker accessTokenTracker = new AccessTokenTracker(){
+        AccessTokenTracker accessTokenTracker = new AccessTokenTracker()
+        {
             @Override
-            protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
-                if(currentAccessToken == null)
-                {
-                    // User logged out of FB
-                    profilePicture.setProfileId(" ");
+            protected void onCurrentAccessTokenChanged(
+                    AccessToken oldAccessToken,
+                    AccessToken currentAccessToken) {
+
+                if (currentAccessToken == null){
+                    //User logged out
+                    profilePicture.setProfileId("");
                 }
-                else
+                else{
                     profilePicture.setProfileId(Profile.getCurrentProfile().getId());
+                }
             }
         };
         accessTokenTracker.startTracking();
@@ -99,6 +108,7 @@ public class Scorepage extends Activity implements OnClickListener
             public void onSuccess(LoginResult loginResult) {
                 profilePicture.setProfileId(Profile.getCurrentProfile().getId());
                 // Call method to share score -- TBD
+                shareScore();
             }
 
             @Override
@@ -127,24 +137,25 @@ public class Scorepage extends Activity implements OnClickListener
         }
         else if (v == btn_sharescore)
         {
-            AlertDialog.Builder alertBuilder = new AlertDialog.Builder(Scorepage.this);
-            alertBuilder.setTitle("Share your score on Facebook?");
-            alertBuilder.setMessage("Do you want to share your score on Facebook?");
-            alertBuilder.setCancelable(false);
-            alertBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    // Call method to share score
-                }
-            });
-            alertBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    // Dialog is to cancel
-                    dialog.cancel();
-                }
-            });
-            alertBuilder.show();
+            AlertDialog.Builder alert_builder = new AlertDialog.Builder(Scorepage.this);
+            alert_builder.setTitle("Share your score on Facebook?");
+            alert_builder.setMessage("Do you want to share your score of " + String.valueOf(highscore))
+                    .setCancelable(false)
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            shareScore();
+                        }
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+
+
+            alert_builder.show();
         }
     }
 
@@ -166,11 +177,27 @@ public class Scorepage extends Activity implements OnClickListener
 
     }
 
-    // FB use callback manager to manage login
+    // FB to use the callback Manager to manage login
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+    }
 
+    protected void onPause(){
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        //finish();
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onStop() {
+        //finish();
+        super.onStop();
     }
 }
 

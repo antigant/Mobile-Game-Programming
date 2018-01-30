@@ -100,7 +100,10 @@ public class SampleGame implements Scene
             return;
         }
         if(Player.Instance.GetIsDead())
+        {
+            RestartPage.Instance.Update();
             return; // TODO: For now just return
+        }
 
         EntityManager.Instance.Update();
         PowerUpManager.Instance.Update();
@@ -136,17 +139,9 @@ public class SampleGame implements Scene
         // Clear the scene before going to the next
         time = 0.0f;
         for(int i = 0; i < backgroundList.size(); ++i)
-        {
-            backgroundList.get(i).SetIsActive(false);
             backgroundList.remove(i);
-        }
-
-        Player.Instance.Reset();
 
         AudioManager.Instance.StopAudio(R.raw.omegasector);
-
-//        leftButton.SetIsActive(false);
-//        rightButton.SetIsActive(false);
 
         EntityManager.Instance.ClearEntityManager();
         GameSystem.Instance.SetHasStarted(false);
@@ -156,6 +151,7 @@ public class SampleGame implements Scene
         if(Player.Instance.GetScore() >= highscore)
             GameSystem.Instance.SetIntInSave("highscore", Player.Instance.GetScore());
         GameSystem.Instance.SaveEditEnd();
+        Player.Instance.Reset();
 
         // Possible solution 1:
         // Clean up all our entities
@@ -173,6 +169,32 @@ public class SampleGame implements Scene
         // Add reset functions or use the SceneManager to update all entities
         // Get all our objects to reset
 
+    }
+
+    public void Reset(SurfaceView _view)
+    {
+        // Potential Solution 2 :
+        // Add reset functions or use the SceneManager to update all entities
+        // Get all our objects to reset
+
+        // Clear the scene before going to the next
+        time = 0.0f;
+        for(int i = 0; i < backgroundList.size(); ++i)
+            backgroundList.remove(i);
+
+        AudioManager.Instance.StopAudio(R.raw.omegasector);
+
+        EntityManager.Instance.ClearEntityManager();
+        GameSystem.Instance.SetHasStarted(false);
+
+        // Do save file here
+        GameSystem.Instance.SaveEditBegin(); // Start the edit
+        if(Player.Instance.GetScore() >= highscore)
+            GameSystem.Instance.SetIntInSave("highscore", Player.Instance.GetScore());
+        GameSystem.Instance.SaveEditEnd();
+        Player.Instance.Reset();
+
+        Init(_view);
     }
 }
 

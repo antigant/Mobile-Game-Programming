@@ -25,7 +25,7 @@ public class EnemyManager
     private final int capEnemies = 15;
 
     private float time = 0;
-    private final float fixTime = 10f;
+    private final float fixTime = 7.5f;
 
     private Stage stage = Stage.NONE;
 

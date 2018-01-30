@@ -41,3 +41,4 @@ public class GamePage extends Activity
         // Can handle what happens to our own systems when activity stops~
     }
 }
+

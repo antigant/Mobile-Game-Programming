@@ -10,12 +10,14 @@ public class DefaultWeapon extends Weapon
 {
     Matrix transform = new Matrix();
 
+    private float a = 3f;
+
     public void Init(SurfaceView _view)
     {
         view = _view;
 
         MAX_TIME = -100f;
-        fixBulletSpawnRate = 3f;
+        fixBulletSpawnRate = a;
     }
 
     public void Update()
@@ -40,7 +42,7 @@ public class DefaultWeapon extends Weapon
     @Override
     public void Reset()
     {
-        fixBulletSpawnRate = 3f;
+        fixBulletSpawnRate = a;
         PowerUpManager.Instance.SetPoweredUp(false);
     }
 }

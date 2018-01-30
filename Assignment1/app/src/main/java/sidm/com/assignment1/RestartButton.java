@@ -3,17 +3,17 @@ package sidm.com.assignment1;
 import android.graphics.Canvas;
 import android.view.SurfaceView;
 
-public class MenuButton extends CButton
+public class RestartButton extends CButton
 {
     @Override
     public void Init(SurfaceView _view)
     {
         active = true;
-        SetName("menu button");
+        SetName("restart button");
         SetType("button");
         SetIsActive(true);
-        SetBitmap(_view,R.drawable.menu_button );
-        SetPosition(550.f, 1000.f);
+        SetBitmap(_view,R.drawable.restart_button );
+        SetPosition(550.f, 700.f);
         SetAABB(pos.x + bmp.getWidth() * 0.5f, pos.y + bmp.getHeight() * 0.5f, pos.x - bmp.getWidth() * 0.5f, pos.y - bmp.getHeight() * 0.5f);
 
         isInit = true;
@@ -28,10 +28,7 @@ public class MenuButton extends CButton
         {
             if(GetIsClick())
             {
-                SceneManager.Instance.SetNextState("MainMenu");
-                PausePage.Instance.MenuButtonClicked();
-                if(Player.Instance.GetIsDead())
-                    Player.Instance.SetIsDead(false);
+                RestartPage.Instance.RestartButtonClicked();
                 SetIsClick(false);
             }
         }
@@ -41,7 +38,6 @@ public class MenuButton extends CButton
     public void Render(Canvas _canvas)
     {
         //set position
-
         _canvas.drawBitmap(bmp, GetPosition().x - bmp.getWidth() * 0.5f, GetPosition().y - bmp.getHeight() * 0.5f, null);
     }
 
